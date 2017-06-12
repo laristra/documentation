@@ -15,17 +15,17 @@ Markdown is a language and is used on GitHub mainly to write README files. A fil
 * Paragraphs need two spaces afterwards for a soft break or a return afterwards for a hard break
 * Links are made of two parts, a description written in [] and the link written in ()
 * Images are the same as links with a ! in front of the brackets
-* `Creates monospace`
+* The ticks above the tab key `create monospace`
 
 ### Create SSH Key on GitHub
 SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of a public and private keys which will allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner.
 
 ### Make a Github Page and Clone it to your Computer
- * Create a new repository and name it username.github.io, substituting your username
+ * Create a new repository and name it `username.github.io`, substituting your username
  * Open Terminal and type in the location of where you want to file your repository
-   * For example, to put the repository in documents, type cd Documents into Terminal
+   * For example, to put the repository in documents, type `cd Documents` into Terminal
  * Type in git clone and then the link, which can be found under "clone or download" on the repository page
- * Type cd username.github.io which will move the location to your project on your computer
+ * Type `cd username.github.io` which will move the location to your project on your computer
  * Type:
 `git add --all`
 `git commit - m "initial commit"`
