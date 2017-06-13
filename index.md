@@ -38,9 +38,9 @@ SSH provides a secure channel in an unsecure network. SSH uses encryption, and o
 ## Travis CI
 Travis CI runs on GitHub - log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a repository on GitHub, add a .travis.yml file to the repository. This file details the language, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format.
 
-#### Example: python_ci
+#### Example: .travis.yml file
 [Link to example](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
-* `language: cpp` means that the project is written in C++.
+* `language: python` means that the project is written in python.
 
 ### Continuous Integration
 Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
