@@ -3,9 +3,6 @@
 ## GitHub
 GitHub is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own, whereas code solely readable to computers would not provide this capability. README files provide a description of a project.
 
-### Create Github Account
-Go to [the Github website](github.com/join) and enter a username, email address, and password. 
-
 ### Terminal
 The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
@@ -20,6 +17,9 @@ Markdown is a language and is used on GitHub mainly to write README files. A fil
 * Links are made of two parts, a description written in [] and the link written in ()
 * Images are the same as links with a ! in front of the brackets
 * The ticks above the tab key `create monospace`
+
+### Create Github Account
+Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
 ### Create SSH Key on GitHub
 SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of a public and private keys which will allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner.
