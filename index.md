@@ -49,6 +49,8 @@ Travis CI runs on GitHub - log in to Travis CI through your GitHub account and e
 
 ### How to Display a Build Passing Badge on GitHub README page
 
+## Code Coverage
+
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
 
