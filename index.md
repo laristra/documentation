@@ -54,13 +54,14 @@ To display the badge a README page, go to Travis. By the account name should be 
 [Examples of badges](https://github.com/laurelmcintyre/python-ci/blob/master/README.md)
 
 ## Code Coverage
+Code coverage shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs.
 * [Codecov website](http://codecov.io/)
 
 ### How to Display Code Coverage Badge on Github
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## SonarQube
-First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
+SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
 Go to Travis settings and enter the token into Environmental Variables and name it. 
 [Travis' Instructions](https://docs.travis-ci.com/user/sonarqube/)
 
