@@ -16,7 +16,7 @@ Markdown is a language and is used on GitHub mainly to write README files. A fil
 * Paragraphs need two spaces afterwards for a soft break or a return afterwards for a hard break
 * Links are made of two parts, a description written in [] and the link written in ()
 * Images are the same as links with a ! in front of the brackets
-* The ticks above the tab key `create monospace`
+* The tick above the tab key `creates monospace`
 
 ### Create Github Account
 Go to [the Github website](github.com/join) and enter a username, email address, and password. 
