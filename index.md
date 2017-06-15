@@ -46,7 +46,7 @@ Travis CI runs on GitHub - log in to Travis CI through your GitHub account and e
 
 ### Example: .travis.yml file
 [Link to example](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
-The .travis.yml requires a script key or else the build will fail.
+Python projects require a script key or else the build will fail.
 * `language: python` means that the project is written in python.
 
 ### How to Display Build Passing Badge on GitHub
