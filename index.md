@@ -42,10 +42,11 @@ Continuous integration is the frequent compilation of all separate copies of a p
 ## Travis CI
 [Travis CI](http://travis-ci.org/) can run on GitHub - log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a repository on GitHub, add a .travis.yml file to the repository. This file details the language, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, Travis CI will run builds after every commit to your GitHub repository.
 
-### Example: .travis.yml file
-[Link to example](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
-Python projects require a script key or else the build will fail. [Instructions for a Python Project](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
+### Example of a .travis.yml file
+[Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
+Python projects require a script key or else the build will fail. 
 * `language: python` means that the project is written in python.
+* [Further instructions](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
 
 ### How to Display Build Passing Badge on GitHub
 A badge displays the status of your build from Travis CI onto your GitHub page.
