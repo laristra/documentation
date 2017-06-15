@@ -23,7 +23,7 @@ Markdown is a language and is used on GitHub mainly to write README files. A fil
 Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
 ### Create SSH Key on GitHub
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of a public and private keys which will allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner.
+SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner.
 
 ### Make a Github Page and Clone it to your Computer
  * Create a new repository and name it `username.github.io`, substituting your username
@@ -46,7 +46,7 @@ Travis CI runs on GitHub - log in to Travis CI through your GitHub account and e
 
 ### Example: .travis.yml file
 [Link to example](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
-Python projects require a script key or else the build will fail.
+Python projects require a script key or else the build will fail. [Instructions for a Python Project](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
 * `language: python` means that the project is written in python.
 
 ### How to Display Build Passing Badge on GitHub
