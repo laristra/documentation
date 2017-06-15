@@ -45,18 +45,21 @@ Travis CI runs on GitHub - log in to Travis CI through your GitHub account and e
 [Link to example](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
 * `language: python` means that the project is written in python.
 
-### How to Display a Build Passing Badge on GitHub README page
+### How to Display Build Passing Badge on GitHub
 A badge displays the status of your build from Travis CI onto your GitHub page.
 To display the badge a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy paste the link it generates into the README page.
 
 ## Code Coverage
+
+### How to Display Code Coverage Badge on Github
+Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
+
+## SonarQube
+First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
+Go to Travis settings and enter the token into Environmental Variables and name it. 
 
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
 
 ## Doxygen
 Doxygen turns code into documentation.
-
-## SonarQube
-First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
-Go to Travis settings and enter the token into Environmental Variables and name it. 
