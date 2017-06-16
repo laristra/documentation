@@ -115,8 +115,7 @@ To resolve, choose which of the two options to delete and keep the other, using 
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
 
 ## SonarQube
-SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
-Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file.
+SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token." Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). 
 
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
