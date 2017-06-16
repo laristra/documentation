@@ -109,7 +109,7 @@ Integration caused a merge conflict that looked like this:
     
 `>>>>>>> 9d7863ddb992bc06aa9d243225ff875e7c15b3f8`
 
-To resolve, choose which of the two options to delete and keep the other, using git commit.
+To resolve, choose which of the two options to delete and keep the other, using git commit and git push.
 
 ## Pydoc
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
