@@ -55,7 +55,7 @@ To display the badge a README page, go to Travis. By the account name should be 
 [Examples of badges](https://github.com/laurelmcintyre/python-ci/blob/master/README.md)
 
 ## Code Coverage
-[Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs.
+[Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add a new repo to "Repository Access" and hit save. Then configure the .travis.yml file (below) and the code coverage account page will be working.
 
 ### Additions to .travis.yml file needed for Code Coverage
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
