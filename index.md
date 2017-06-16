@@ -1,5 +1,6 @@
 # How to
 Overview
+
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own, whereas code solely readable to computers would not provide this capability. README files provide a description of a project.
 
@@ -56,6 +57,16 @@ To display the badge a README page, go to Travis. By the account name should be 
 ## Code Coverage
 [Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs.
 
+### Additions to .travis.yml file needed for Code Coverage
+[Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
+`sudo: required` Sudo: required is necessary to install codecov and also installs Docker as a service. This specifies a [trusty build environment](https://docs.travis-ci.com/user/trusty-ci-environment).
+`before_install: 
+  - sudo pip install codecov` The sudo: required setting allows pip to install codecov.
+ `script:
+  - coverage run mytan.py 
+  - codecov` The script directs codecov to run the file mytan.py in the python-ci repository.
+* Codecoverage has [additional instructions](https://docs.codecov.io/docs)
+  
 ### How to Display Code Coverage Badge on Github
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
