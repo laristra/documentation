@@ -70,6 +70,47 @@ To display the badge a README page, go to Travis. By the account name should be 
 ### How to Display Code Coverage Badge on Github
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
+## How to Resolve a Merge Conflict
+One of the reasons for continuous integration is to avoid merge conflict. However, if two people edit copies of a file and attempt to merge them into the main branch, they will have to fix the conflicts. For example, part of the mytan.py file was originally like this:
+
+`if __name__ == "__main__":`
+
+   `arg = sys.argv[1].`
+   
+   `print "Tan of %s is %s" % (arg, float(mytan(arg)))`
+    
+Edits were made on two separate copies of the mytan.py file. The first was this:
+
+`if __name__ == "__main__":  `
+
+   ` print "Tan of %s is %s" % (arg, mytan(float(sys.argv[1])))`
+    
+The second was this:
+
+`if __name__ == "__main__":`
+
+   ` arg=float(sys.argv[1])`
+    
+   ` print "Tan of %s is %s" % (arg, mytan(arg))`
+
+Integration caused a merge conflict that looked like this:
+
+`if __name__ == "__main__":`
+
+`<<<<<<< HEAD`
+
+  `  print "Tan of %s is %s" % (arg, mytan(float(sys.argv[1])))`
+  
+`=======`
+
+   ` arg=float(sys.argv[1])`
+   
+    `print "Tan of %s is %s" % (arg, mytan(arg))`
+    
+`>>>>>>> 9d7863ddb992bc06aa9d243225ff875e7c15b3f8`
+
+To resolve, choose which of the two options to delete and keep the other.
+
 ## SonarQube
 SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
 Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file.
