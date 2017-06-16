@@ -111,6 +111,9 @@ Integration caused a merge conflict that looked like this:
 
 To resolve, choose which of the two options to delete and keep the other, using git commit.
 
+## Pydoc
+Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
+
 ## SonarQube
 SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
 Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file.
@@ -118,6 +121,3 @@ Go to Travis settings and enter the token into Environmental Variables and name 
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
 To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so add `sudo: required` to your .travis.yml file.
-
-## Doxygen
-Doxygen turns code into documentation.
