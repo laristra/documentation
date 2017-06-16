@@ -109,7 +109,7 @@ Integration caused a merge conflict that looked like this:
     
 `>>>>>>> 9d7863ddb992bc06aa9d243225ff875e7c15b3f8`
 
-To resolve, choose which of the two options to delete and keep the other.
+To resolve, choose which of the two options to delete and keep the other, using git commit.
 
 ## SonarQube
 SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token."
