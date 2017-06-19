@@ -65,15 +65,13 @@ Python projects require a script key or else the build will fail.
 
 ### How to Display Build Passing Badge on GitHub
 A badge displays the status of your build from Travis CI onto your GitHub page.
-To display the badge a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy paste the link it generates into the README page.
+To display the badge a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 [Examples of badges](https://github.com/laurelmcintyre/python-ci/blob/master/README.md)
 
 ## Code Coverage
 [Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add a new repo to "Repository Access" and hit save. Then configure the .travis.yml file (below) and the code coverage account page will be working.
 
 ### Additions to .travis.yml file needed for Code Coverage
-[Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
-
     sudo: required
 Sudo: required is necessary to install codecov and also installs Docker as a service. This specifies a [trusty build environment](https://docs.travis-ci.com/user/trusty-ci-environment).
 
@@ -143,7 +141,7 @@ Integration caused a merge conflict that looked like this:
     
     >>>>>>> 9d7863ddb992bc06aa9d243225ff875e7c15b3f8`
 
-To resolve, choose which of the two options to delete and keep the other, using git commit and git push.
+To resolve, choose which of the two options to delete and keep the other, using `git commit` and `git push`.
 
 ## Pydoc
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
