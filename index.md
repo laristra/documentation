@@ -174,6 +174,9 @@ View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blo
 ### How to Post Quality Gate Badge on GitHub
 In Markdown, the format for a Quality Gate Badge is [![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>). View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md).
 
+## Nose 2
+[Nose 2](http://nose2.readthedocs.io/en/latest/)
+
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
 To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so add `sudo: required` to your .travis.yml file.
