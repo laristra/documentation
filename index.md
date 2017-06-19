@@ -76,18 +76,27 @@ To display the badge a README page, go to Travis. By the account name should be 
 * Codecoverage has [additional instructions](https://docs.codecov.io/docs)
 
 ### Pip
-  
+Pip can be used to install software packages written in Python. You can use pip in Terminal to install, upgrade, or uninstall packages using the following syntax:
+`pip install <package>`
+`pip uninstall <package>`
+`pip install -- upgrade <package>`
+
+Pip is also used in the .travis.yml file under before_install to use codecov: 
+`pip install codecov`
+
 ### How to Display Code Coverage Badge on Github
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## How to Resolve a Merge Conflict
 One of the reasons for continuous integration is to avoid merge conflict. However, if two people edit copies of a file and attempt to merge them into the main branch, they will have to fix the conflicts. For example, part of the mytan.py file was originally like this:
 
-`if __name__ == "__main__":`
+.. code-block:: python
 
-   `arg = sys.argv[1].`
-   
-   `print "Tan of %s is %s" % (arg, float(mytan(arg)))`
+    if __name__ == "__main__":
+
+        arg = sys.argv[1].
+        
+        print "Tan of %s is %s" % (arg, float(mytan(arg)))
     
 Edits were made on two separate copies of the mytan.py file. The first was this:
 
