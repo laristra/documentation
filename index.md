@@ -59,12 +59,19 @@ To display the badge a README page, go to Travis. By the account name should be 
 
 ### Additions to .travis.yml file needed for Code Coverage
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
+
 `sudo: required` Sudo: required is necessary to install codecov and also installs Docker as a service. This specifies a [trusty build environment](https://docs.travis-ci.com/user/trusty-ci-environment).
-`before_install: 
-  - sudo pip install codecov` The sudo: required setting allows pip to install codecov.
- `script:
-  - coverage run mytan.py 
-  - codecov` The script directs codecov to run the file mytan.py in the python-ci repository.
+
+`before_install:`
+
+`  - sudo pip install codecov` The sudo: required setting allows pip to install codecov.
+
+ `script:`
+ 
+  `- coverage run mytan.py `
+  
+ ` - codecov` The script directs codecov to run the file mytan.py in the python-ci repository.
+ 
 * Codecoverage has [additional instructions](https://docs.codecov.io/docs)
   
 ### How to Display Code Coverage Badge on Github
@@ -115,7 +122,32 @@ To resolve, choose which of the two options to delete and keep the other, using 
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
 
 ## SonarQube
-SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token." Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). 
+SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token." Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
+
+`addons:`
+
+ ` sonarqube:`
+ 
+    `organization: "organization-key" `
+  
+`script:`
+
+ ` - sonar-scanner`
+  
+View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml) file for an example. SonarQube also requires a sonar-project.properties file, which will have the following lines of code:
+
+`sonar.projectKey=<project-key>`
+
+`sonar.projectName=<project-name>`
+
+`sonar.projectVersion=1.0`
+
+`sonar.sources=.`
+
+`sonar.sourceEncoding=UTF-8`
+
+### How to Post Quality Gate Badge on GitHub
+In Markdown, the format for a Quality Gate Badge is [![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>). View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md).
 
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
