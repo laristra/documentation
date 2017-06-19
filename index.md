@@ -12,7 +12,7 @@ Markdown is a language and is used on GitHub mainly to write README files. A fil
 * Italic words are surrounded by _underscores_
 * Bold words are surrounded by **asterisks**
 * Headers come in six sizes and begin with a hashtag #, one hashtag makes the largest size and six hashtags make the smallest size
-* Each item in an unordered list begins with an asterisk, and each item in an ordered list begis with a number and a period (1.) 
+* Each item in an unordered list begins with an asterisk, and each item in an ordered list begins with a number and a period (1.) 
   * Indented items in a list need to have two spaces before the asterisk
 * Paragraphs need two spaces afterwards for a soft break or a return afterwards for a hard break
 * Links are made of two parts, a description written in [] and the link written in ()
