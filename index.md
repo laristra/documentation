@@ -38,15 +38,16 @@ SSH provides a secure channel in an unsecure network. SSH uses encryption, and o
  * [Github pages site](https://pages.github.com/)
 
 ## Continuous Integration
-Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
+Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
 
 ## Travis CI
-[Travis CI](http://travis-ci.org/) can run on GitHub - log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a repository on GitHub, add a .travis.yml file to the repository. This file details the language, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, Travis CI will run builds after every commit to your GitHub repository.
+[Travis CI](http://travis-ci.org/) can run on GitHub - log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a repository on GitHub, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, Travis CI will run builds after every commit to your GitHub repository.
 
 ### Example of a .travis.yml file
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
 Python projects require a script key or else the build will fail. 
 * `language: python` means that the project is written in python.
+* `script: echo hello world` — a specific script is not necessary at this point, but the build will fail without a script
 * [Further instructions](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
 
 ### How to Display Build Passing Badge on GitHub
@@ -73,6 +74,8 @@ To display the badge a README page, go to Travis. By the account name should be 
  ` - codecov` The script directs codecov to run the file mytan.py in the python-ci repository.
  
 * Codecoverage has [additional instructions](https://docs.codecov.io/docs)
+
+### Pip
   
 ### How to Display Code Coverage Badge on Github
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
@@ -136,15 +139,15 @@ SonarQube is meant to improve code quality. First, log in to SonarQube through y
   
 View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml) file for an example. SonarQube also requires a sonar-project.properties file, which will have the following lines of code:
 
-`sonar.projectKey=<project-key>`
+`sonar.projectKey=project-key`
 
-`sonar.projectName=<project-name>`
+`sonar.projectName=project-name`
 
 `sonar.projectVersion=1.0`
 
 `sonar.sources=.`
 
-`sonar.sourceEncoding=UTF-8`
+`sonar.sourceEncoding=UTF-8` — Default Setting
 
 ### How to Post Quality Gate Badge on GitHub
 In Markdown, the format for a Quality Gate Badge is [![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>). View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md).
