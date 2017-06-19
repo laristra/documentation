@@ -7,6 +7,19 @@ Overview
 ### Terminal
 The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
+#### Short List of Commands in Terminal
+* `ls` shows everything in the current folder
+* `cd` change directory
+* `git clone` clone repo on GitHub — all commands for GitHub begin with `git`
+* `git status`
+* `git add`
+* `git log`
+* `touch <file>` creates new file
+* `git push`
+* `git commit`
+* `git pull`
+* `git diff` 
+
 ### Markdown
 Markdown is a language and is used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
 * Italic words are surrounded by _underscores_
