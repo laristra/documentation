@@ -177,3 +177,4 @@ In Markdown, the format for a Quality Gate Badge is [![Quality Gate](https://son
 ## Docker
 Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
 To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so add `sudo: required` to your .travis.yml file.
+[Docker Instructions](https://docs.docker.com/get-started/)
