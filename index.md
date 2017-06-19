@@ -90,43 +90,42 @@ Under settings on the Code Coverage website, click on "Badge." Copy the markdown
 ## How to Resolve a Merge Conflict
 One of the reasons for continuous integration is to avoid merge conflict. However, if two people edit copies of a file and attempt to merge them into the main branch, they will have to fix the conflicts. For example, part of the mytan.py file was originally like this:
 
-.. code-block:: python
-
     if __name__ == "__main__":
 
         arg = sys.argv[1].
         
         print "Tan of %s is %s" % (arg, float(mytan(arg)))
+        
     
 Edits were made on two separate copies of the mytan.py file. The first was this:
 
-`if __name__ == "__main__":  `
+    if __name__ == "__main__":  `
 
-   ` print "Tan of %s is %s" % (arg, mytan(float(sys.argv[1])))`
+        print "Tan of %s is %s" % (arg, mytan(float(sys.argv[1])))`
     
 The second was this:
 
-`if __name__ == "__main__":`
+    if __name__ == "__main__":`
 
-   ` arg=float(sys.argv[1])`
+        arg=float(sys.argv[1])`
     
-   ` print "Tan of %s is %s" % (arg, mytan(arg))`
+        print "Tan of %s is %s" % (arg, mytan(arg))`
 
 Integration caused a merge conflict that looked like this:
 
-`if __name__ == "__main__":`
+    if __name__ == "__main__":`
 
-`<<<<<<< HEAD`
+    <<<<<<< HEAD`
 
-  `  print "Tan of %s is %s" % (arg, mytan(float(sys.argv[1])))`
+        print "Tan of %s is %s" % (arg, mytan(float(sys.argv[1])))`
   
-`=======`
+    =======`
 
-   ` arg=float(sys.argv[1])`
+        arg=float(sys.argv[1])`
    
-    `print "Tan of %s is %s" % (arg, mytan(arg))`
+        print "Tan of %s is %s" % (arg, mytan(arg))`
     
-`>>>>>>> 9d7863ddb992bc06aa9d243225ff875e7c15b3f8`
+    >>>>>>> 9d7863ddb992bc06aa9d243225ff875e7c15b3f8`
 
 To resolve, choose which of the two options to delete and keep the other, using git commit and git push.
 
@@ -134,17 +133,17 @@ To resolve, choose which of the two options to delete and keep the other, using 
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
 
 ## SonarQube
-SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token." Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
+SonarQube is meant to improve code quality. First, log in to SonarQube through your GitHub account. Then, go to "My Account," click on "Security," and "Generate Token." Go to Travis settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file::
 
-`addons:`
-
- ` sonarqube:`
- 
-    `organization: "organization-key" `
+    addons:
+    
+    sonarqube:
+    
+    organization: "organization-key"
   
-`script:`
+    script:
 
- ` - sonar-scanner`
+      - sonar-scanner
   
 View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml) file for an example. SonarQube also requires a sonar-project.properties file, which will have the following lines of code:
 
