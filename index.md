@@ -8,7 +8,7 @@ Overview
 The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Markdown
-Markdown is a language and is used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, for example README.md. The formatting of Markdown is as follows:
+Markdown is a language and is used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
 * Italic words are surrounded by _underscores_
 * Bold words are surrounded by **asterisks**
 * Headers come in six sizes and begin with a hashtag #, one hashtag makes the largest size and six hashtags make the smallest size
