@@ -81,8 +81,8 @@ The script directs codecov to run the file mytan.py in the python-ci repository.
 ### Pip
 Pip can be used to install software packages written in Python. You can use pip in Terminal to install, upgrade, or uninstall packages using the following syntax:
 `pip install <package>`
-`pip uninstall <package>`
 `pip install -- upgrade <package>`
+`pip uninstall <package>`
 
 Pip is also used in the .travis.yml file under before_install to use codecov: 
 `pip install codecov`
