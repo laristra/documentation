@@ -12,12 +12,12 @@ The command line on Terminal starts with the name of the computer followed by th
 * `cd` change directory
 * `git clone` clone repo on GitHub — all commands for GitHub begin with `git`
 * `git status`
-* `git add`
-* `git log`
+* `git add` add a specific file update to github
+* `git log` show commits
 * `touch <file>` creates new file
-* `git push`
+* `git push` 
 * `git commit`
-* `git pull`
+* `git pull` pull files from github
 * `git diff` 
 
 ### Markdown
