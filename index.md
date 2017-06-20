@@ -82,10 +82,9 @@ The sudo: required setting allows pip to install codecov.
 
     script:
  
-      - coverage run mytan.py 
+      - coverage run <file>
   
       - codecov
-The script directs codecov to run the file mytan.py in the python-ci repository.
  
 * Codecoverage has [additional instructions](https://docs.codecov.io/docs)
 
@@ -144,7 +143,7 @@ Integration caused a merge conflict that looked like this:
 To resolve, choose which of the two options to delete and keep the other, using `git commit` and `git push`.
 
 ## Pydoc
-Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in pydoc -w <file>. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type pydoc <file>, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
+Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in `pydoc -w <file>`. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type `pydoc <file>`, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
 
 ## SonarQube
 SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, the python-ci project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
@@ -172,12 +171,12 @@ View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blo
     sonar.sourceEncoding=UTF-8
 
 ### How to Post Quality Gate Badge on GitHub
-In Markdown, the format for a Quality Gate Badge is [![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>). View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md).
+In Markdown, the format for a Quality Gate Badge is [![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>). View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md). Clik on the raw README page to see the format.
 
 ## Nose 2
 [Nose 2](http://nose2.readthedocs.io/en/latest/)
 
 ## Docker
-Docker is a software container platform that makes for easier collaboration between users on different devices. Docker packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
+Docker is a software container platform packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
 To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so add `sudo: required` to your .travis.yml file.
 [Docker Instructions](https://docs.docker.com/get-started/)
