@@ -145,6 +145,33 @@ To resolve, choose which of the two options to delete and keep the other, using 
 ## Pydoc
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in `pydoc -w <file>`. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type `pydoc <file>`, which would be `pydoc mytan` in the case of the example. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
 
+### How to Upload Pydoc Documentation to GitHub using Travis
+Create a personal access token in GitHub and put it in environmental variables on Travis. Then add the following lines to your .travis.yml file:
+
+   ` after_success: |
+   
+      if [ -n "$GITHUB_KEY" ]; then
+      
+        cd "$TRAVIS_BUILD_DIR"
+        
+        make web
+        
+        cd web
+        
+        git init
+        
+        git checkout -b gh-pages
+        
+        git add .
+        
+        git -c user.name='travis' -c user.email='travis' commit -m init
+        
+        git push -f -q https://<account-name>:$GITHUB_API_KEY@github.com/<account-name>/<repo-name>-gh-pages gh-pages&2>/dev/null
+        
+        cd "$TRAVIS_BUILD_DIR"
+        
+      fi`
+
 ## SonarQube
 SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, the python-ci project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
 
