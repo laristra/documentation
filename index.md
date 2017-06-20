@@ -60,6 +60,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
 Python projects require a script key or else the build will fail. 
 * `language: python` means that the project is written in python.
+* `python: ` Put in the version of python that Travis will run if other than python 2.7, the default. Two or more versions creates a build matrix and runs two different builds.
 * `script: echo hello world` — a specific script is not necessary at this point, but the build will fail without a script
 * [Further instructions](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
 
@@ -148,7 +149,7 @@ Pydoc creates documentation for python files. To generate documentation for a py
 ### How to Upload Pydoc Documentation to GitHub using Travis
 Create a personal access token in GitHub and put it in environmental variables on Travis. Name the token (the name will be put in your .travis.yml file). Then add the following lines to your .travis.yml file:
 
-    `after_success: |
+    after_success: |
     
       if [ -n "$<token-name>" ]; then
       
@@ -172,8 +173,10 @@ Create a personal access token in GitHub and put it in environmental variables o
         
         git push -f https://<user-name>:$<token-name>@github.com/<user-name>/<project-name> gh-pages 
         
-      fi`
-After this builds on Travis, go to the home page of your repo, click on "branch," and switch from master to gh-pages.
+      fi
+      
+After this builds on Travis, go to the home page of your repo, click on "branch," and switch from master to gh-pages. The html files should be in the gh-pages branch.
+
 ## SonarQube
 SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, the python-ci project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
 
