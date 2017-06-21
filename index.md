@@ -203,7 +203,7 @@ View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blo
     sonar.sourceEncoding=UTF-8
 
 ### How to Post Quality Gate Badge on GitHub
-In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>)`. View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md). Clik on the raw README page to see the format.
+In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>)`. View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md). Click on the raw README page to see the format.
 
 ## Nose 2
 [Nose 2](http://nose2.readthedocs.io/en/latest/)
