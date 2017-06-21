@@ -211,7 +211,31 @@ Docker is a software container platform packages the libraries and settings of a
 
     COPY . /<repo-name>
 
-To use the python:2.7 image, you would need to run `docker run python:2.7`. Next, go back to Docker settings and click [Create an Automated Build](https://hub.docker.com/add/automated-build/github/), enter your GitHub organization (username) and project name and click "Create."
+To use the python:2.7 image, you would need to run `docker run python:2.7`. Next, go back to Docker settings and click [Create an Automated Build](https://hub.docker.com/add/automated-build/github/), enter your GitHub organization (username) and project name and click "Create." Adjust the .travis.yml file to use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/) by adding the following lines:
+
+    services:
+    
+      -docker
+      
+
+    env:
+    
+      global:
+      
+        - COMMIT=${TRAVIS_COMMIT::8}
+        
+        - REPO=<username>/<project-name>
+        
+
+    before_install:
+    
+     - docker build -t $REPO:$COMMIT -t $REPO:latest .
+     
+
+    script:
+
+      - docker run -it $REPO:$COMMIT /bin/bash -c "cd <project-name>"
+      
 
 [Docker Instructions](https://docs.docker.com/get-started/)
 
