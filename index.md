@@ -206,11 +206,23 @@ View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blo
 In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>)`. View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md). Click on the raw README page to see the format.
 
 ## Nose 2
-[Nose 2](http://nose2.readthedocs.io/en/latest/)
+[Nose 2](http://nose2.readthedocs.io/en/latest/) is testing for python.
+Add the following lines to your .travis.yml file:
 
+    before_install:
+   
+    - sudo pip install nose2
+    
+    script:
+    
+    - nose2 --with-coverage <file>
+    
 ## Docker
 Docker is a software container platform packages the libraries and settings of a piece of software and makes it work the same regardless of the device it is on.
 To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so make sure `sudo: required` is in your .travis.yml file.
+
 [Docker Instructions](https://docs.docker.com/get-started/)
+
 [Create Auto-build on Github](https://hub.docker.com/add/automated-build/github/)
+
 [How to build Dockerfile](https://docs.docker.com/engine/reference/builder/#run)
