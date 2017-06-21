@@ -209,6 +209,7 @@ In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://so
 [Nose 2](http://nose2.readthedocs.io/en/latest/)
 
 ## Docker
-Docker is a software container platform packages the libraries and settings of a piece of software and make it work the same regardless of the device it is on.
-To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so add `sudo: required` to your .travis.yml file.
+Docker is a software container platform packages the libraries and settings of a piece of software and makes it work the same regardless of the device it is on.
+To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so make sure `sudo: required` is in your .travis.yml file.
 [Docker Instructions](https://docs.docker.com/get-started/)
+[Create Auto-build on Github](https://hub.docker.com/add/automated-build/github/)
