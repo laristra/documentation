@@ -2,26 +2,13 @@
 Overview
 
 ## GitHub
-[GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own, whereas code solely readable to computers would not provide this capability. README files provide a description of a project.
+[GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
 
 ### Terminal
 The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
-#### Short List of Commands in Terminal
-* `ls` shows everything in the current folder
-* `cd` change directory
-* `git clone` clone repo on GitHub — all commands for GitHub begin with `git`
-* `git status`
-* `git add` add a specific file update to github
-* `git log` show commits
-* `touch <file>` creates new file
-* `git push` 
-* `git commit`
-* `git pull` pull files from github
-* `git diff` 
-
 ### Markdown
-Markdown is a language and is used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
+Markdown is a language used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
 * Italic words are surrounded by _underscores_
 * Bold words are surrounded by **asterisks**
 * Headers come in six sizes and begin with a hashtag #, one hashtag makes the largest size and six hashtags make the smallest size
@@ -60,13 +47,13 @@ Continuous integration is the frequent compilation of all separate copies of a p
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
 Python projects require a script key or else the build will fail. 
 * `language: python` means that the project is written in python.
-* `python: ` Put in the version of python that Travis will run if other than python 2.7, the default. Two or more versions creates a build matrix and runs two different builds.
+* `python: ` Put in the version of python that Travis will run if other than python 2.7 (the default). Two or more versions creates a build matrix and runs two different builds.
 * `script: echo hello world` — a specific script is not necessary at this point, but the build will fail without a script
 * [Further instructions](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
 
 ### How to Display Build Passing Badge on GitHub
 A badge displays the status of your build from Travis CI onto your GitHub page.
-To display the badge a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
+To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 [Examples of badges](https://github.com/laurelmcintyre/python-ci/blob/master/README.md)
 
 ## Code Coverage
