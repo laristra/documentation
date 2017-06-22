@@ -200,7 +200,7 @@ Add the following lines to your .travis.yml file:
 
     before_install:
    
-    - sudo pip install nose2
+    - sudo pip install nose2 nose2-cov
     
     script:
     
