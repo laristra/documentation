@@ -45,7 +45,6 @@ Continuous integration is the frequent compilation of all separate copies of a p
 
 ### Example of a .travis.yml file
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
-Python projects require a script key or else the build will fail. 
 * `language: python` means that the project is written in python.
 * `python: ` Put in the version of python that Travis will run if other than python 2.7 (the default). Two or more versions creates a build matrix and runs two different builds.
 * `script: echo hello world` — a specific script is not necessary at this point, but the build will fail without a script
