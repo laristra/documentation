@@ -7,6 +7,8 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python reposit
 ### Terminal
 The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
+### Shell
+
 ### Markdown
 Markdown is a language used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
 * Italic words are surrounded by _underscores_
