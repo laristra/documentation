@@ -23,7 +23,7 @@ Markdown is a language used on GitHub mainly to write README files. A file writt
 Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
 ### Create SSH Key on GitHub
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner.
+SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your-email>"`. Enter y for yes when prompted to save the key in the default file. [More instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
 ### Make a Github Page and Clone it to your Computer
  * Create a new repository and name it `username.github.io`, substituting your username
@@ -61,7 +61,7 @@ To display the badge on a README page, go to Travis. By the account name should 
 
 ### Additions to .travis.yml file needed for Code Coverage
     sudo: required
-Sudo: required is necessary to install codecov and also installs Docker as a service. This specifies a [trusty build environment](https://docs.travis-ci.com/user/trusty-ci-environment).
+Sudo: required is necessary to install codecov. This specifies a [trusty build environment](https://docs.travis-ci.com/user/trusty-ci-environment).
 
     before_install:
 
