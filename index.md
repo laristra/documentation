@@ -205,7 +205,7 @@ Add the following lines to your .travis.yml file:
     - nose2 --with-coverage <file>
     
 ## Docker
-Docker is a software container platform packages the libraries and settings of a piece of software and makes it work the same regardless of the device it is on. To use Docker, make an account and enter a username, email, and password. To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: -docker` in your .travis.yml file. Builds must run on trusty to use Docker, so make sure `sudo: required` is in your .travis.yml file. Next, go to DockerHub settings under "linked accounts and services" and link GitHub. Then, create a Dockerfile, which can look like this:
+Docker is a software container platform packages the libraries and settings of a piece of software and makes it work the same regardless of the device it is on. To use Docker, make an account and enter a username, email, and password. To use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/), add `services: - docker` in your .travis.yml file. Builds must run on trusty to use Docker, so make sure `sudo: required` is in your .travis.yml file. Next, go to DockerHub settings under "linked accounts and services" and link GitHub. Then, create a Dockerfile, which can look like this:
 
     FROM python:2.7
 
