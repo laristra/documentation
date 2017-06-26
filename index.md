@@ -39,6 +39,9 @@ SSH provides a secure channel in an unsecure network. SSH uses encryption, and o
 `git commit - m "initial commit"`
 `git push -u origin master`
  * [Github pages site](https://pages.github.com/)
+ 
+### Clone GitHub repo to your Computer
+[Github Instructions](https://help.github.com/articles/cloning-a-repository/)
 
 ## Continuous Integration
 Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
