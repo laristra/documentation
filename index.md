@@ -89,7 +89,7 @@ Integration caused a merge conflict that looked like this:
 To resolve, choose which of the two options to delete and keep the other, using `git add`, `git commit`, and `git push`.
 
 ## Travis CI
-[Travis CI](http://travis-ci.org/) can run on GitHub — log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a GitHub repository, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, Travis CI will run builds after every commit to your GitHub repository.
+[Travis CI](http://travis-ci.org/) can run on GitHub — log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a GitHub repository, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, run `git push origin master` on Terminal to trigger the first build, and then Travis CI will run builds after every commit to your GitHub repository.
 
 ### Example of a .travis.yml file
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
