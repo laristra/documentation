@@ -22,11 +22,13 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `touch <file-name>` make new file
 
+`rm <file-name>` remove file
+
 `git init` make directory on computer a GitHub repo
 
 `git status` status of a project
 
-`nano <file-name>` create and/or edit a file, use control o to save and control x to exit
+`nano <file-name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
 
 `git add <file-name>` add file from computer to GitHub
 
