@@ -38,3 +38,20 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with c repository a
     * Next to the repo name on Travis should be a build badge. Click on it and copy the link in Markdown format to paste on the repo's README page.
 
 7. CodeCov
+    
+    * Add to .travis.yml file
+
+            env:
+              matrix:
+                - DISTRO=ubuntu
+                - DISTRO=ubuntu COVERAGE=ON
+
+            script:
+              - clang -coverage -O0 helloworld.c -o hello
+              - ./hello
+              - gcov helloworld.c
+
+            after_success:
+              - bash <(curl -s https://codecov.io/bash)
+    * Go to [the CodeCov website](http://codecov.io/) and add the new repo -- then the codecoverage dashboard should appear
+    * Go to settings and copy the markdown version of the badge to post on the README file
