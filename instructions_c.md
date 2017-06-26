@@ -51,6 +51,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with c repository a
     * Go to settings and copy the markdown version of the badge to post on the README file
     
 8. SonarQube
+    * Log in to SonarQube and generate a new token under account settings -- put the token in environmental variables on Travis
     * Add to .travis.yml file
     
             addons:
