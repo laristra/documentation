@@ -7,6 +7,23 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python reposit
 ### Terminal
 The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
+### Git Commands in Terminal
+`git config -h` list of GitHub commands
+`git config --list` list settings for GitHub account
+`mkdir <name>` make directory on computer
+`cd <directory-name>` go into directory
+`ls` list contents of directory
+`touch <file-name>` make new file
+`git init` make directory on computer a GitHub repo
+`git status` status of a project
+`nano <file-name>` create and/or edit a file, use control o to save and control x to exit
+`git add <file-name>` add file from computer to GitHub
+`git commit - m "<message>"` add commit to GitHub
+`git log` shows history of project
+`git diff` difference between current file and last saved file, can be edited to show difference between chosen files 
+`git checkout` restore old version of a file
+`git pull` pull updated files from GitHub to computer
+
 ### Shell
 "The most generic sense of the term shell means any program that users employ to type commands. A shell hides the details of the underlying operating system and manages the technical details of the operating system kernel interface, which is the lowest-level, or "inner-most" component of most operating systems." - [Wikipedia](https://en.wikipedia.org/wiki/Shell_(computing))
 
