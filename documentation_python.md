@@ -4,8 +4,8 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python reposit
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
 
-### Terminal
-The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
+### The Shell and Terminal
+The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
 `git config -h` list of GitHub commands
@@ -43,9 +43,6 @@ The command line on Terminal starts with the name of the computer followed by th
 `git pull` pull updated files from GitHub to computer
 
 `git clone` clone repo
-
-### Shell
-"The most generic sense of the term shell means any program that users employ to type commands. A shell hides the details of the underlying operating system and manages the technical details of the operating system kernel interface, which is the lowest-level, or "inner-most" component of most operating systems." - [Wikipedia](https://en.wikipedia.org/wiki/Shell_(computing))
 
 ### Markdown
 Markdown is a language used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
