@@ -18,8 +18,9 @@ The command line on Terminal starts with the name of the computer followed by th
 
 `ls` list contents of directory
 
-`touch <file-name>` make new file
+`cat <file-name>` display contents of file in Terminal
 
+`touch <file-name>` make new file
 
 `git init` make directory on computer a GitHub repo
 
@@ -31,6 +32,8 @@ The command line on Terminal starts with the name of the computer followed by th
 
 `git commit - m "<message>"` add commit to GitHub
 
+`git push` push repo to GitHub
+
 `git log` shows history of project
 
 `git diff` difference between current file and last saved file, can be edited to show difference between chosen files 
@@ -38,6 +41,8 @@ The command line on Terminal starts with the name of the computer followed by th
 `git checkout` restore old version of a file
 
 `git pull` pull updated files from GitHub to computer
+
+`git clone` clone repo
 
 ### Shell
 "The most generic sense of the term shell means any program that users employ to type commands. A shell hides the details of the underlying operating system and manages the technical details of the operating system kernel interface, which is the lowest-level, or "inner-most" component of most operating systems." - [Wikipedia](https://en.wikipedia.org/wiki/Shell_(computing))
