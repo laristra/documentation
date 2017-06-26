@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with c repository as example -- refer to [instructions_python.md](https://github.com/laurelmcintyre/documentation/blob/gh-pages/instructions_python.md) for more detailed instructions
+How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with c repository as example -- refer to [documentation_python.md](https://github.com/laurelmcintyre/documentation/blob/gh-pages/instructions_python.md) for more detailed instructions
 
 1. Create new Github repo
     * Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
