@@ -21,15 +21,15 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with c repository a
 
 5. Make a .travis.yml file 
 
-      `language: c
-    
-      sudo: required
-    
-      script: gcc <file-name>.c -o hello
-    
-      compiler:
-        - gcc
-        - clang`
+       language: c
+
+       sudo: required
+
+       script: gcc <file-name>.c -o hello
+
+       compiler:
+         - gcc
+         - clang
     
     * Go to Travis and switch the tab from off to on on the new repo. To trigger the first Travis build, make sure the repo is up to date on your local computer and type `git push origin master`. The first build should start.
 
