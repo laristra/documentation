@@ -14,23 +14,23 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `mkdir <name>` make directory on computer
 
-`cd <directory-name>` go into directory
+`cd <directory_name>` go into directory
 
 `ls` list contents of directory
 
-`cat <file-name>` display contents of file in Terminal
+`cat <file_name>` display contents of file in Terminal
 
-`touch <file-name>` make new file
+`touch <file_name>` make new file
 
-`rm <file-name>` remove file
+`rm <file_name>` remove file
 
 `git init` make directory on computer a GitHub repo
 
 `git status` status of a project
 
-`nano <file-name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
+`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
 
-`git add <file-name>` add file from computer to GitHub
+`git add <file_name>` add file from computer to GitHub
 
 `git commit - m "<message>"` add commit to GitHub
 
@@ -62,7 +62,7 @@ Markdown is a language used on GitHub mainly to write README files. A file writt
 Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
 ### Create SSH Key on GitHub
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your-email>"`. Enter y for yes when prompted to save the key in the default file. [More instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Enter y for yes when prompted to save the key in the default file. [More instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
 ### Make a Github Page and Clone it to your Computer
  * Create a new repository and name it `username.github.io`, substituting your username
@@ -179,7 +179,7 @@ Create a personal access token in GitHub and put it in environmental variables o
 
     after_success: |
     
-      if [ -n "$<token-name>" ]; then
+      if [ -n "$<token_name>" ]; then
       
         cd "$TRAVIS_BUILD_DIR"
         
@@ -199,7 +199,7 @@ Create a personal access token in GitHub and put it in environmental variables o
         
         git -c user.name='travis' -c user.email='travis' commit -m init
         
-        git push -f https://<user-name>:$<token-name>@github.com/<user-name>/<project-name> gh-pages 
+        git push -f https://<user_name>:$<token_name>@github.com/<user_name>/<project_name> gh-pages 
         
       fi
       
@@ -212,7 +212,7 @@ SonarQube is meant to improve code quality. It progresses through a series of co
     
     sonarqube:
     
-      organization: "<organization-key>"
+      organization: "<organization_key>"
   
     script:
 
@@ -220,9 +220,9 @@ SonarQube is meant to improve code quality. It progresses through a series of co
   
 View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml) file for an example. SonarQube also requires a sonar-project.properties file, which will have the following lines of code:
 
-    sonar.projectKey=<project-key>
+    sonar.projectKey=<project_key>
 
-    sonar.projectName=<project-name>
+    sonar.projectName=<project_name>
 
     sonar.projectVersion=1.0
 
@@ -231,7 +231,7 @@ View the [python-ci .travis.yml](https://github.com/laurelmcintyre/python-ci/blo
     sonar.sourceEncoding=UTF-8
 
 ### How to Post Quality Gate Badge on GitHub
-In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project-key>)`. View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md).
+In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project_key>)`. View the example at the [python-ci README page](https://github.com/laurelmcintyre/python-ci/blob/master/README.md).
 
 ## Nose 2
 [Nose 2](http://nose2.readthedocs.io/en/latest/) is testing for python.
@@ -250,7 +250,7 @@ Docker is a software container platform packages the libraries and settings of a
 
     FROM python:2.7
 
-    COPY . /<repo-name>
+    COPY . /<repo_name>
 
 Docker has more instructions on [how to build a Dockerfile](https://docs.docker.com/engine/reference/builder/#run). To use the python:2.7 image, you would need to run `docker run python:2.7` on Terminal. Next, go back to Docker settings and click [Create an Automated Build](https://hub.docker.com/add/automated-build/github/), enter your GitHub organization (username) and project name and click "Create." Adjust the .travis.yml file to use [Docker in Travis builds](https://docs.travis-ci.com/user/docker/) by adding the following lines:
 
@@ -268,7 +268,7 @@ Docker has more instructions on [how to build a Dockerfile](https://docs.docker.
       
         - COMMIT=${TRAVIS_COMMIT::8}
         
-        - REPO=<username>/<project-name>
+        - REPO=<username>/<project_name>
         
 
     before_install:
@@ -278,4 +278,4 @@ Docker has more instructions on [how to build a Dockerfile](https://docs.docker.
 
     script:
 
-      - docker run -it $REPO:$COMMIT /bin/bash -c "cd <project-name>"
+      - docker run -it $REPO:$COMMIT /bin/bash -c "cd <project_name>"
