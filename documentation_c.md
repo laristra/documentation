@@ -64,3 +64,6 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with c repository a
               
 9. Doxygen 
 [Using Doxygen with Travis](https://gist.github.com/vidavidorra/548ffbcdae99d752da02)
+
+10. Docker
+    * Create automated build on DockerHub
