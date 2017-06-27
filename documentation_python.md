@@ -7,28 +7,14 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python reposit
 ### The Shell and Terminal
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
-### Git Commands in Terminal
+### Commands in Terminal
 `git config -h` list of GitHub commands
 
 `git config --list` list settings for GitHub account
 
-`mkdir <name>` make directory on computer
-
-`cd <directory_name>` go into directory
-
-`ls` list contents of directory
-
-`cat <file_name>` display contents of file in Terminal
-
-`touch <file_name>` make new file
-
-`rm <file_name>` remove file
-
 `git init` make directory on computer a GitHub repo
 
 `git status` status of a project
-
-`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
 
 `git add <file_name>` add file from computer to GitHub
 
@@ -45,6 +31,35 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 `git pull` pull updated files from GitHub to computer
 
 `git clone` clone repo
+
+### Commands in Terminal
+`mkdir <name>` make directory on computer
+
+`cd <directory_name>` go into directory
+
+`ls` list contents of directory
+
+`cat <file_name>` display contents of file in Terminal
+
+`touch <file_name>` make new file
+
+`rm <file_name>` remove file
+
+`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
+
+`cp <file1_name> <file2_name>` copy one file into another
+
+`*.txt` select all files ending with text (can be any ending)
+
+`echo` returns input as output
+
+`sort` order list alphabetically
+
+`uniq` filter out duplicate lines
+
+`clear` clear Terminal window
+
+`$VAR` stores value of variable 
 
 ### Markdown
 Markdown is a language used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
