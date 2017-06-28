@@ -7,7 +7,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python reposit
 ### The Shell and Terminal
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
-### Commands in Terminal
+### Git Commands in Terminal
 `git config -h` list of GitHub commands
 
 `git config --list` list settings for GitHub account
