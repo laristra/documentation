@@ -27,7 +27,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
          - gcc
          - clang
     * Create a personal access token: go to GitHub settings and generate a personal access token. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
-    * Go to Travis and switch the tab from off to on on the new repo. To trigger the first Travis build, make sure the repo is up to date on your local computer and type `git push origin master`. The first build should start.
+    * Go to Travis and switch the tab from off to on on the new repo. The first build should start eventually.
 
 6. Put Travis Badge on GitHub
     * Next to the repo name on Travis should be a build badge. Click on it and copy the link in Markdown format to paste on the repo's README page.
