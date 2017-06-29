@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository](https://github.com/laurelmcintyre/c) as example -- refer to [documentation_python.md](https://github.com/laurelmcintyre/documentation/blob/gh-pages/instructions_python.md) for more detailed instructions
+How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository](https://github.com/laurelmcintyre/c) and [c-makefile repo](https://github.com/laurelmcintyre/c-makefile) as example -- refer to [documentation_python.md](https://github.com/laurelmcintyre/documentation/blob/gh-pages/instructions_python.md) for more detailed instructions
 
 1. Create new Github repo
     * Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
@@ -190,4 +190,13 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
               - ./generateDocumentationAndDeploy.sh
    
     * Doxygen documentation should be displayed on the gh-pages branch and go into settings to find the link where it is published
-  
+
+10. Makefile -- new example repo : [c-makefile](https://github.com/laurelmcintyre/c-makefile)
+    * Create MakeFile in repo with following lines (simple example):
+    
+            all: helloworld.c hello.c ; gcc hello.c -o hello -g ; gcc helloworld.c -o helloworld -g
+
+            clean: ; rm hello ; rm helloworld
+            
+   * Common build failure such as "Makefile:2: missing separator.  Stop." is caused by indentation errors and can be fixed with semicolon format as shown above
+   * Add `script : -make` to .travis.yml file
