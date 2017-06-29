@@ -198,5 +198,5 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
 
             clean: ; rm hello ; rm helloworld
             
-   * Common build failure such as "Makefile:2: missing separator.  Stop." is caused by indentation errors and can be fixed with semicolon format as shown above
-   * Add `script : -make` to .travis.yml file
+    * Common build failure such as "Makefile:2: missing separator.  Stop." is caused by indentation errors and can be fixed with semicolon format as shown above
+    * Add `script : -make` to .travis.yml file
