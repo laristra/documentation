@@ -71,7 +71,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
     
             addons:
               sonarcloud:
-                organization: "laurelmcintyre-github"
+                organization: "<username>-github"
 
 
             script:
@@ -116,9 +116,9 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
             cd code_docs
 
             
-            git clone -b gh-pages https://github.com/laurelmcintyre/c c
+            git clone -b gh-pages https://github.com/<username>/<repo_name> <repo_name>
             
-            cd c
+            cd <repo_name>
 
 
             git config --global push.default simple
