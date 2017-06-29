@@ -189,7 +189,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
               - chmod +x generateDocumentationAndDeploy.sh
               - ./generateDocumentationAndDeploy.sh
    
-    * Doxygen documentation should be displayed on the gh-pages branch and go into settings to find the link where it is published
+    * Doxygen documentation should be displayed on the gh-pages branch. Go into settings to find the link where it is published, which should say "Your site is published at https://<username>.github.io/<repo_name>/". Add html after <repo_name>/ to see the published documentation.
 
 10. Makefile -- new example repo : [c-makefile](https://github.com/laurelmcintyre/c-makefile)
     * Create MakeFile in repo with following lines (simple example):
