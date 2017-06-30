@@ -200,3 +200,37 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen with [c repository
             
     * Common build failure such as "Makefile:2: missing separator.  Stop." is caused by indentation errors and can be fixed with semicolon format as shown above
     * Add `script : -make` to .travis.yml file
+    
+11. CMake -- new example repo : [cpp-cmake](https://github.com/laurelmcintyre/cpp-cmake)
+    * Create CMakeLists.txt :
+    
+          cmake_minimum_required (VERSION 2.6)
+
+          project (<repo_name>)
+
+          add_executable(<repo-name> <file_name>)
+
+
+          set_property(TARGET <repo_name> PROPERTY CXX_STANDARD 11)
+
+          set_property(TARGET <repo_name> PROPERTY CXX_STANDARD_REQUIRED ON)
+ 
+    * Add to .travis.yml file:
+    
+          addons:
+            apt:
+              packages:
+                - cmake-data
+                - cmake
+                
+
+          script:
+            - sonar-scanner
+            - g++ -coverage <file_name>.cpp -o <file_name>
+            - cmake CMakeLists.txt
+            - make
+            - ./<repo_name>
+            
+          compiler:
+            - g++
+            
