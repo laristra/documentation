@@ -256,7 +256,6 @@ The first step to run Doxygen is to create a shell file which could be called ge
           exit 1
       fi
 
-           
 The .travis.yml requires changes as well. Doxygen will not generate documentation for the gh-pages branch because it is where the auto-generated files from Doxygen are pushed to. The addons install packages for doxygen to run and the after_success refers to the generateDocumentationAndDeploy.sh file which was just made -- the `if [[ ${TRAVIS_JOB_NUMBER} = *.1 ]]` means that in a build matrix, Doxygen will only generate documentation on the first build. 
     
       branches:
