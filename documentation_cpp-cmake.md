@@ -313,6 +313,9 @@ To add Doxygen commands to the MakeFile instead of the .travis.yml file, add the
           COMMENT "Build doxygen documentation")
         add_custom_target(html DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/html/index.html)
       endif()
+      
+      option(ENABLE_COVERAGE_BUILD "Do a coverage build" ON)
+      
 Finally, to configure the .travis.yml file correctly, add this to the .travis.yml file and replace the existing script with the following script (leaving sonar-scanner in place).
 
       addons:
@@ -323,5 +326,6 @@ Finally, to configure the .travis.yml file correctly, add this to the .travis.ym
 
       script:
         - cmake .
+        - cmake . -DENABLE_COVERAGE_BUILD=ON
         - make
         - ./<repo_name>
