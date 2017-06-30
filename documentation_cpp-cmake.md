@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, Make, CMake, and/or Doxygen using c or c++ with [c repository](https://github.com/laurelmcintyre/c), [c-makefile repository](https://github.com/laurelmcintyre/c-makefile), [cpp-cmake repository](https://github.com/laurelmcintyre/cpp-cmake), and [ccmake-doxygen repository](https://github.com/laurelmcintyre/ccmake-docker) as examples -- refer to [documentation_python.md](https://github.com/laurelmcintyre/documentation/blob/gh-pages/instructions_python.md) for more detailed instructions
+How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, and CMake using c++ [cpp-cmake repository](https://github.com/laurelmcintyre/cpp-cmake) as example -- refer to [documentation_python.md](https://github.com/laurelmcintyre/documentation/blob/gh-pages/instructions_python.md) for more detailed instructions
 
 1. Create new Github repo
     * Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
