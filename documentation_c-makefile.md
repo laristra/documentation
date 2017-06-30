@@ -296,8 +296,8 @@ Doxygen documentation should publish on the gh-pages branch. To find the documen
 ## Makefile
 The Makefile contains shell commands that direct make on how to recompile a program. Some commands previously in the .travis.yml file will be redirected into the Makefile, so some lines in the .travis.yml file will need to be deleted and replaced. First, make a Makefile with the following content (the comments are for instruction):
 
-      #name of the program (file)
-      NAME=helloworld
+      #name of the program
+      NAME=<file_name>
 
       #other c file to compile
       EXTRA_SRC=
