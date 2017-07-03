@@ -8,7 +8,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, and Make using c with
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
-`git config -h` list of GitHub commands
+`git config -h` show list of GitHub commands
 
 `git config --list` list settings for GitHub account
 
@@ -16,7 +16,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git status` status of a project
 
-`git add <file_name>` add file from computer to GitHub
+`git add <file_name>` add file from computer to GitHub - needs to be committed and pushed
 
 `git commit - m "<message>"` add commit to GitHub
 
@@ -26,7 +26,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git diff` difference between current file and last saved file, can be edited to show difference between chosen files 
 
-`git checkout` restore old version of a file
+`git checkout` restore old version of a file, also can be used to change branches in a repo
 
 `git pull` pull updated files from GitHub to computer
 
@@ -77,8 +77,8 @@ Markdown is a language used on GitHub mainly to write README files. A file writt
 1. Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 2. Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
 
-### Create SSH Key on GitHub -- Once only per GitHub account
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Enter y for yes when prompted to save the key in the default file. [More instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+### Create SSH Key on GitHub -- Only once per account
+SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allows remote access (using the command line on Terminal). To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
 ### Clone GitHub Repo to your computer
 [Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone https://github.com/<username>/<repo_name>`, which will clone the contents of the git repo to your computer. 
@@ -138,7 +138,7 @@ In place of a personal access token which can be used to access all of an organi
     * `git push` push changes to github
 
 ## OR Create a Personal Access Token
-To create a personal access token, which is another option instead of the Deploy SSH key and less secure, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
+To create a personal access token, which is less secure option than the Deploy SSH key, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
 
 ## Cache
 Caches store data to speed up processes, for example, requests are temporarily stored so that the same request later could be served faster. Travis CI [caches dependencies and directories](https://docs.travis-ci.com/user/caching/) which makes the build  go quicker. To enable caching in Travis, add the following lines to the .travis.yml file.
@@ -185,7 +185,7 @@ A .codecov.yml file can look like this:
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## SonarQube
-SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, the python-ci project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
+SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, an example project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
 
       addons:
         sonarcloud:
