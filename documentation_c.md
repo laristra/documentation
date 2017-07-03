@@ -26,7 +26,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git diff` difference between current file and last saved file, can be edited to show difference between two chosen files 
 
-`git checkout` restore old version of a file
+`git checkout` restore old version of a file, also can be used to switch branches in a repo
 
 `git pull` pull updated files from GitHub to computer
 
@@ -177,7 +177,7 @@ A .codecov.yml file can look like this:
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## SonarQube
-SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, the python-ci project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
+SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, an example project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
 
       addons:
         sonarcloud:
