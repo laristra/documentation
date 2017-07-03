@@ -88,8 +88,8 @@ SSH provides a secure channel in an unsecure network. SSH uses encryption, and o
 `git push -u origin master`
 
 ### Clone GitHub Repo to your computer
-[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone https://github.com/<username>/<repo_name>`, which will clone the contents of the git repo to your computer. 
- 
+[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone <SSH_key>`, which will clone the contents of the git repo to your computer. 
+
 ### Create a new file on your repo
 Create a program/function. Travis, CodeCov, SonarQube, etc. will all test this file(s). To pull the file from GitHub to your local computer, type `cd <repo_name>`, which will navigate into the repo and `git pull` which will pull the updated files on the repo from GitHub to the computer.
 
