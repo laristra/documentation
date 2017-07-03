@@ -112,8 +112,6 @@ In place of a personal access token which can be used to access all of an organi
 * `cat deploy.pub` .pub indicates the public key and cat displays the content of the public deploy key in terminal  
 * Go to GitHub settings and click Add Deploy Key  
 * Copy the content from `cat deploy.pub` into the window on GitHub that "Add Deploy Key" opens and click "Allow write access"  
-
-Now, you will add the private key, encrypted, to GitHub, which travis commands in Terminal automatically generate
 * `travis encrypt-file ./deploy` tells travis to encrypt the private deploy key  
 * type yes when prompted for detected repository name  
 * `travis encrypt-file --add after success ./deploy` tells to add in the after_success portion of the .travis.yml file  
