@@ -8,7 +8,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen using c with [exam
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
-`git config -h` list of GitHub commands
+`git config -h` show list of GitHub commands
 
 `git config --list` list settings for GitHub account
 
@@ -16,7 +16,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git status` status of a project
 
-`git add <file_name>` add file from computer to GitHub
+`git add <file_name>` add file from computer to GitHub, needs to be committed and pushed
 
 `git commit - m "<message>"` add commit to GitHub
 
@@ -24,7 +24,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git log` shows history of project
 
-`git diff` difference between current file and last saved file, can be edited to show difference between chosen files 
+`git diff` difference between current file and last saved file, can be edited to show difference between two chosen files 
 
 `git checkout` restore old version of a file
 
@@ -51,11 +51,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `*.txt` select all files ending with text (can be any ending)
 
-`echo` returns input as output
-
-`sort` order list alphabetically
-
-`uniq` filter out duplicate lines
+`echo` returns input as output, i.e. returning value of variable
 
 `clear` clear Terminal window
 
@@ -77,8 +73,8 @@ Markdown is a language used on GitHub mainly to write README files. A file writt
 1. Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 2. Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
 
-### Create SSH Key on GitHub -- Once only per GitHub account
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Enter y for yes when prompted to save the key in the default file. [More instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+### Create SSH Key on GitHub -- Only once per account
+SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allows remote access (using the command line on Terminal). To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
 ### Clone GitHub Repo to your computer
 [Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone https://github.com/<username>/<repo_name>`, which will clone the contents of the git repo to your computer. 
@@ -213,7 +209,7 @@ Then, make a sonar-project.properties file:
 In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project_key>)`. 
 
 ## Doxygen 
-[Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, go to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. The only things that necessarily need to be changed are PROJECT_NAME and INPUT (INPUT, if using the shell file (below), should be set equal to ../..). Next, create a gh-pages branch of the repo by going to the repo settings, and under GitHub Pages it should say "Source" -- click on it and switch the branch to master.
+[Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages, mainly c and c++. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, go to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. The only things that necessarily need to be changed are PROJECT_NAME and INPUT (INPUT, if using the shell file (below), should be set equal to ../..). Next, create a gh-pages branch of the repo by going to the repo settings, and under GitHub Pages it should say "Source" -- click on it and switch the branch to master.
 
 The first step to run Doxygen is to create a shell file which could be called generateDocumentationAndDeploy.sh. The .travis.yml file will reference this file, but having a separate shell file means that all of this source code does not have to be in .travis.yml. The TRAVIS_REPO_SLUG variable refers to <username>/<repo_name>, so it does not have to be changed for every project. 
 
