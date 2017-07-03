@@ -8,7 +8,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, and Make using c with
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
-`git config -h` list of GitHub commands
+`git config -h` show list of GitHub commands
 
 `git config --list` list settings for GitHub account
 
@@ -16,7 +16,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git status` status of a project
 
-`git add <file_name>` add file from computer to GitHub
+`git add <file_name>` add file from computer to GitHub - needs to be committed and pushed
 
 `git commit - m "<message>"` add commit to GitHub
 
@@ -52,10 +52,6 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 `*.txt` select all files ending with text (can be any ending)
 
 `echo` returns input as output
-
-`sort` order list alphabetically
-
-`uniq` filter out duplicate lines
 
 `clear` clear Terminal window
 
@@ -95,7 +91,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
 ### Example of a .travis.yml file
 [Link to example c repository](https://github.com/laurelmcintyre/c)
 * `language: c` means that the project is written in c.
-*  `script: ${CC} <file-name>.c -o <file-name>` runs the compiler gcc or clang on a file
+* `script: ${CC} <file-name>.c -o <file-name>` runs the compiler gcc or clang on a file
 *  Specify the compiler which the script runs on
 
         compiler:
@@ -217,7 +213,7 @@ Then, make a sonar-project.properties file:
 In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project_key>)`. 
 
 ## Doxygen 
-[Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, go to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. The only things that necessarily need to be changed are PROJECT_NAME and INPUT (INPUT, if using the shell file (below), should be set equal to ../..). Next, create a gh-pages branch of the repo by going to the repo settings, and under GitHub Pages it should say "Source" -- click on it and switch the branch to master.
+[Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages, mainly c and c++. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, go to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. The only things that necessarily need to be changed are PROJECT_NAME and INPUT (INPUT, if using the shell file (below), should be set equal to ../..). Next, create a gh-pages branch of the repo by going to the repo settings, and under GitHub Pages it should say "Source" -- click on it and switch the branch to master.
 
 The first step to run Doxygen is to create a shell file which could be called generateDocumentationAndDeploy.sh. The .travis.yml file will reference this file, but having a separate shell file means that all of this source code does not have to be in .travis.yml. The TRAVIS_REPO_SLUG variable refers to <username>/<repo_name>, so it does not have to be changed for every project. 
 
