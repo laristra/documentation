@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python repository as example
+How to use GitHub, Travis CI, CodeCov, SonarQube, Pydoc, and Docker with python repository as example
 
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
@@ -8,7 +8,7 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Docker with python reposit
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
-`git config -h` list of GitHub commands
+`git config -h` show list of GitHub commands
 
 `git config --list` list settings for GitHub account
 
@@ -16,7 +16,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git status` status of a project
 
-`git add <file_name>` add file from computer to GitHub
+`git add <file_name>` add file from computer to GitHub, needs to be committed and pushed
 
 `git commit - m "<message>"` add commit to GitHub
 
@@ -24,7 +24,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `git log` shows history of project
 
-`git diff` difference between current file and last saved file, can be edited to show difference between chosen files 
+`git diff` difference between current file and last saved file, can be edited to show difference between two chosen files 
 
 `git checkout` restore old version of a file
 
@@ -51,11 +51,7 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 
 `*.txt` select all files ending with text (can be any ending)
 
-`echo` returns input as output
-
-`sort` order list alphabetically
-
-`uniq` filter out duplicate lines
+`echo` returns input as output, i.e. returning value of variable
 
 `clear` clear Terminal window
 
@@ -76,23 +72,26 @@ Markdown is a language used on GitHub mainly to write README files. A file writt
 ### Create Github Account
 Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
-### Create SSH Key on GitHub
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allow remote access (using the command line on Terminal). To create a SSH key on GitHub, go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Enter y for yes when prompted to save the key in the default file. [More instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+### Create SSH Key on GitHub -- Only once per account
+SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allows remote access (using the command line on Terminal). To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
 ### Make a Github Page and Clone it to your Computer
+ * [Github pages site](https://pages.github.com/)
  * Create a new repository and name it `username.github.io`, substituting your username
  * Open Terminal and type in the location of where you want to file your repository
-   * For example, to put the repository in documents, type `cd Documents` into Terminal
+   * For example, to put the repository in Desktop, type `cd Desktop` into Terminal
  * Type in git clone and then the link, which can be found under "clone or download" on the repository page
- * Type `cd username.github.io` which will move the location to your project on your computer
+ * Type `cd username.github.io` which will go into the local GitHub repository on the computer
  * Type:
 `git add --all`
 `git commit - m "initial commit"`
 `git push -u origin master`
- * [Github pages site](https://pages.github.com/)
+
+### Clone GitHub Repo to your computer
+[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone https://github.com/<username>/<repo_name>`, which will clone the contents of the git repo to your computer. 
  
-### Clone GitHub repo to your Computer
-[Github Instructions](https://help.github.com/articles/cloning-a-repository/)
+### Create a new file on your repo
+Create a program/function. Travis, CodeCov, SonarQube, etc. will all test this file(s). To pull the file from GitHub to your local computer, type `cd <repo_name>`, which will navigate into the repo and `git pull` which will pull the updated files on the repo from GitHub to the computer.
 
 ## Continuous Integration
 Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
@@ -145,7 +144,12 @@ To resolve, choose which of the two options to delete and keep the other, using 
 ### Example of a .travis.yml file
 [Link to example python-ci repository](https://github.com/laurelmcintyre/python-ci/blob/master/.travis.yml)
 * `language: python` means that the project is written in python.
-* `python: ` Put in the version of python that Travis will run if other than python 2.7 (the default). Two or more versions creates a build matrix and runs two different builds.
+* Put in the version of python that Travis will run if other than python 2.7 (the default). Two or more versions creates a build matrix and runs two different builds.
+
+      python:
+        - "2.7"
+        - "3.2"
+      
 * `script: echo hello world` — a specific script is not necessary at this point, but the build will fail without a script
 * [Further instructions](https://docs.travis-ci.com/user/languages/python/#Specifying-Test-Scriptz)
 
@@ -154,8 +158,38 @@ A badge displays the status of your build from Travis CI onto your GitHub page.
 To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 [Examples of badges](https://github.com/laurelmcintyre/python-ci/blob/master/README.md)
 
+## Create a Deploy Key for the Repo
+In place of a personal access token which can be used to access all of an organization's repos, a deploy key (SSH key) is specific to one repo and therefore is safer. To create a deploy key, go to Terminal. 
+
+    * `git pull` makes sure the repo is up to date on the local machine
+    * `ssh-keygen -f deploy` to generate a deploy key
+    * Do not enter a passphrase, hit enter
+    * `cat deploy.pub` .pub indicates the public key and cat displays the content of the public deploy key in terminal
+    * Go to GitHub settings and click Add Deploy Key
+    * Copy the content from `cat deploy.pub` into the window on GitHub that "Add Deploy Key" opens and click "Allow write access"
+    
+    Now, you will add the private key, encrypted, to GitHub, which travis commands in Terminal automatically generate
+    * `travis encrypt-file ./deploy` tells travis to encrypt the private deploy key
+    * type yes when prompted for detected repository name
+    * `travis encrypt-file --add after success ./deploy` tells to add in the after_success portion of the .travis.yml file
+    * type yes when prompted to override deploy.enc
+    * `git add deploy.enc` .enc implies the encrypted version of the deploy key, add this to github
+    * `git add .travis.yml` the .travis.yml file now has the encrypted key on it, so add this to github as well
+    * `git commit -m "encrypt deploy key"
+    * Edit the .travis.yml file (`nano .travis.yml`) in terminal and add the following in after_success:
+    
+          mv deploy ~/.ssh/id-rsa
+
+          chmod 600 ~/.ssh/id-rsa
+       
+      The first command means the deploy key will be in the ssh folder and the second chmod 600 command means that only you have read/write access and no one else. The chmod command is in the XYZ format, with X meaning you, Y meaning your group, and Z meaning everyone else. The numbers range from 0 - 7 and have different meanings, such as 2 means write and 4 means read, so 6 = 2 + 4 and has both these permissions.
+      Save the changes with Ctrl o, hit enter, and then hit Ctrl x to exit nano.
+    * `git add .travis.yml` add the travis file again
+    * `git commit -m "add .travis.yml`
+    * `git push` push changes to github
+
 ## Code Coverage
-[Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add a new repo to "Repository Access" and hit save. Then configure the .travis.yml file (below) and the code coverage account page will be working.
+[Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add a new repo to "Repository Access" and hit save. Then configure the .travis.yml file (below) and the .codecov.yml file and the code coverage account page will be working.
 
 ### Additions to .travis.yml file needed for Code Coverage
     sudo: required
@@ -174,6 +208,18 @@ The sudo: required setting allows pip to install codecov.
  
 * Codecoverage has [additional instructions](https://docs.codecov.io/docs)
 
+### Add .codecov.yml file
+The .codecov.yml file controls the settings for CodeCov, and is used for customization if you don't want to use the default.
+A .codecov.yml file can look like this:
+
+      coverage:
+        precision: 1
+        round: down
+      range: "70...100"
+
+### How to Display Code Coverage Badge on Github
+Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
+
 ### Pip
 Pip can be used to install software packages written in Python. You can use pip in Terminal to install, upgrade, or uninstall packages using the following syntax:
 `pip install <package>`
@@ -182,9 +228,6 @@ Pip can be used to install software packages written in Python. You can use pip 
 
 Pip is also used in the .travis.yml file under before_install to use codecov: 
 `pip install codecov`
-
-### How to Display Code Coverage Badge on Github
-Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## Pydoc
 Pydoc creates documentation for python files. To generate documentation for a python file from Terminal, navigate to the directory with the file (using the cd command). Then type in `pydoc -w <file>`. Make sure to leave .py off the file. For example, to find the mytan.py file, I would type `pydoc -w mytan`. To see the documentation in Terminal, type `pydoc <file>`. To show the documentation on a webpage. type in `pydoc -p 0`. Copy and paste the link it generates into a browser search window.
@@ -250,7 +293,7 @@ In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://so
 
 ## Nose 2
 [Nose 2](http://nose2.readthedocs.io/en/latest/) is testing for python.
-Add the following lines to your .travis.yml file:
+Add the following lines to your .travis.yml file to test with Nose 2:
 
     before_install:
    
