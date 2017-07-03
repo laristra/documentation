@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, and Make using c with [example c-makefile repository](https://github.com/laurelmcintyre/c)
+How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, CMake, and Docker using c with [example ccmake-docker repository](https://github.com/laurelmcintyre/ccmake-docker)
 
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
@@ -328,3 +328,8 @@ Finally, to configure the .travis.yml file correctly, add this to the .travis.ym
         - cmake . -DENABLE_COVERAGE_BUILD=ON
         - make
         - ./<repo_name>
+
+## Docker
+Docker is a software container platform packages the libraries and settings of a piece of software and makes it perform the same regardless of the device it is on. To use Docker, make an account and enter a username, email, and password. Go to DockerHub settings under "linked accounts and services" and link GitHub. 
+
+First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo.
