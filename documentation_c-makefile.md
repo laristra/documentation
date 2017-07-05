@@ -166,7 +166,7 @@ A .codecov.yml file can look like this:
       coverage:
         precision: 1
         round: down
-      range: "70...100"
+        range: "70...100"
       
 Range specifies the code coverage range in percent corresponding to color. The low number, in this case 70, means that code coverage under or equal to 70% would show a red background. 100% would be green, and there would be a range of colors inbetween. Depending on the project, different ranges of code can be expected, so 100% does not necessarily have to be the top number if it is unattainable. 
 
