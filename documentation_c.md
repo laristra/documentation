@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen using c with [example c repository](https://github.com/laurelmcintyre/c)
+How to use GitHub, Travis CI, CodeCov, SonarQube, Pydoc, and Docker with python repository as example
 
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
@@ -8,82 +8,71 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen using c with [exam
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
-`git config -h` show list of GitHub commands
-
-`git config --list` list settings for GitHub account
-
-`git init` make directory on computer a GitHub repo
-
-`git status` status of a project
-
-`git add <file_name>` add file from computer to GitHub, needs to be committed and pushed
-
-`git commit - m "<message>"` add commit to GitHub
-
-`git push` push repo to GitHub
-
-`git log` shows history of project
-
-`git diff` difference between current file and last saved file, can be edited to show difference between two chosen files 
-
-`git checkout` restore old version of a file, also can be used to switch branches in a repo
-
-`git pull` pull updated files from GitHub to computer
-
-`git clone` clone repo
+`git config -h` show list of GitHub commands  
+`git config --list` list settings for GitHub account  
+`git init` make directory on computer a GitHub repo  
+`git clone` clone GitHub repo to computer  
+`git status` show status of a project  
+`git add <file_name>` add file from computer to GitHub, needs to be committed and pushed  
+`git commit - m "<message>"` add commit to GitHub, needs to be pushed  
+`git push` push repo to GitHub, final step  
+`git log` shows history of project by commit  
+`git diff` difference between current file and last saved file, can be edited to show difference between two chosen files   
+`git checkout` restore old version of a file or switch branches  
+`git pull` pull updated files from GitHub to computer  
 
 ### Commands in Terminal
-`mkdir <name>` make directory on computer
-
-`cd <directory_name>` go into directory
-
-`ls` list contents of directory
-
-`cat <file_name>` display contents of file in Terminal
-
-`touch <file_name>` make new file
-
-`rm <file_name>` remove file
-
-`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
-
-`cp <file1_name> <file2_name>` copy one file into another
-
-`*.txt` select all files ending with text (can be any ending)
-
-`echo` returns input as output, i.e. returning value of variable
-
-`clear` clear Terminal window
-
-`$VAR` stores value of variable 
+`mkdir <name>` make directory  
+`cd <directory_name>` navigate into directory  
+`ls` list contents of directory  
+`cat <file_name>` display contents of file in Terminal  
+`touch <file_name>` make new file  
+`rm <file_name>` remove file  
+`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit  
+`cp <file1_name> <file2_name>` copy one file into another  
+`*.txt` select all files ending with txt (can be any ending)  
+`echo` returns input as output, i.e. returning value of variable  
+`clear` clear Terminal window  
+`$VAR` stores value of variable  
 
 ### Markdown
-Markdown is a language used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
-* Italic words are surrounded by _underscores_
-* Bold words are surrounded by **asterisks**
+Markdown is a language used on GitHub mainly to write README.md files. A file written in markdown on GitHub is indicated by .md. The formatting of Markdown is as follows:
+* _Italic_ words are surrounded by underscores
+* **Bold** words are surrounded by two asterisks on either side
 * Headers come in six sizes and begin with a hashtag #, one hashtag makes the largest size and six hashtags make the smallest size
-* Each item in an unordered list begins with an asterisk, and each item in an ordered list begins with a number and a period (1.) 
-  * Indented items in a list need to have two spaces before the asterisk
+* Each item in an unordered list begins with an asterisk, and each item in an ordered list begins with a number and a period 
+  * Indented items in a list have two spaces before the asterisk
 * Paragraphs need two spaces afterwards for a soft break or a return afterwards for a hard break
-* Links are made of two parts, a description written in [] and the link written in ()
-* Images are the same as links with a ! in front of the brackets
-* The tick above the tab key `creates monospace`
+* Links are made of two parts, a description written in [] and the link contained in ()
+* Images are formatted the same as links with a ! in front of the first brackets
+* The tick above the tab key `creates a monospace`
 
-### Create Github Account or Create new GitHub Repo
-1. Go to [the Github website](github.com/join) and enter a username, email address, and password. 
-2. Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
+### Create Github Account
+Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
 ### Create SSH Key on GitHub -- Only once per account
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allows remote access (using the command line on Terminal). To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+SSH provides a secure channel in an unsecure network using encryption. On GitHub, the user creates a pair of public and private keys which allows remote access to a repo using the command line on Terminal. To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
-### Clone GitHub Repo to your computer
-[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone <SSH_key>`, which will clone the contents of the git repo to your computer. 
- 
+### Make a Github Pages Site and Clone it to your Computer
+ * [Github pages site](https://pages.github.com/)
+ * Create a new repository and name it `<username>.github.io`, substituting your username
+ * Open Terminal and type in the location of where you want to file your repository
+   * For example, to put the repository in Desktop, type `cd Desktop` on the command line
+ * Type in `git clone` and then the SSH version of the link, which can be found under "clone or download" on the repository page
+ * Type `cd <username>.github.io` which will navigate into the local GitHub repository on the computer
+ * Type:
+`git add --all`
+`git commit -m "initial commit"`
+`git push -u origin master` -- Adding updated files from a computer to GitHub requires these three steps every time.
+
+### Clone a GitHub Repo to your computer
+[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone <SSH_key>`, which will clone the contents of the git repo to your computer. To navigate into this repo, type `cd <repo_name>`.
+
 ### Create a new file on your repo
-Create a program/function. Travis, CodeCov, SonarQube, etc. will all test this file(s). To pull the file from GitHub to your local computer, type `cd <repo_name>`, which will navigate into the repo and `git pull` which will pull the updated files on the repo from GitHub to the computer.
+Create a program in a new file. Travis, CodeCov, SonarQube, etc. will all test this file (or files). To pull the file from GitHub to your local computer, type `cd <repo_name>`, which will navigate into the repo and `git pull` which will pull the updated files on the repo from GitHub to the computer.
 
 ## Continuous Integration
-Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
+Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail without continuous integration because changes can be made to the main branch after the copy is made that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the main branch and tests for every commit so that errors can be identified and corrected immediately.
 
 ## Travis CI
 [Travis CI](http://travis-ci.org/) can run on GitHub — log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a GitHub repository, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, run `git push origin master` on Terminal to trigger the first build, and then Travis CI will run builds after every commit to your GitHub repository.
