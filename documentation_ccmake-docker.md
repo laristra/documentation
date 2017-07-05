@@ -1,97 +1,86 @@
 # How to
 How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, CMake, and Docker using c with [example ccmake-docker repository](https://github.com/laurelmcintyre/ccmake-docker) 
-This repo goes through the same steps as the cpp-cmake repo. If you want to create the repo with Docker from the start, read the Docker instructions (bottom of this file) first.
+
+This repo goes through the same initial steps as the cpp-cmake repo. If you want to create the repo with Docker from the start, read the Docker instructions (bottom of this file) first.
+
+# How to
+How to use GitHub, Travis CI, CodeCov, SonarQube, Pydoc, and Docker with python repository as example
 
 ## GitHub
-[GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
+[GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. README files provide a description of a project.
 
 ### The Shell and Terminal
 The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
 
 ### Git Commands in Terminal
-`git config -h` show list of GitHub commands
-
-`git config --list` list settings for GitHub account
-
-`git init` make directory on computer a GitHub repo
-
-`git status` status of a project
-
-`git add <file_name>` add file from computer to GitHub - needs to be committed and pushed
-
-`git commit - m "<message>"` add commit to GitHub
-
-`git push` push repo to GitHub
-
-`git log` shows history of project
-
-`git diff` difference between current file and last saved file, can be edited to show difference between chosen files 
-
-`git checkout` restore old version of a file, also can be used to change branches in a repo
-
-`git pull` pull updated files from GitHub to computer
-
-`git clone` clone repo
+`git config -h` show list of GitHub commands  
+`git config --list` list settings for GitHub account  
+`git init` make directory on computer a GitHub repo  
+`git clone` clone GitHub repo to computer  
+`git status` show status of a project  
+`git add <file_name>` add file from computer to GitHub, needs to be committed and pushed  
+`git commit - m "<message>"` add commit to GitHub, needs to be pushed  
+`git push` push repo to GitHub, final step  
+`git log` shows history of project by commit  
+`git diff` difference between current file and last saved file, can be edited to show difference between two chosen files   
+`git checkout` restore old version of a file or switch branches  
+`git pull` pull updated files from GitHub to computer  
 
 ### Commands in Terminal
-`mkdir <name>` make directory on computer
-
-`cd <directory_name>` go into directory
-
-`ls` list contents of directory
-
-`cat <file_name>` display contents of file in Terminal
-
-`touch <file_name>` make new file
-
-`rm <file_name>` remove file
-
-`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit
-
-`cp <file1_name> <file2_name>` copy one file into another
-
-`*.txt` select all files ending with text (can be any ending)
-
-`echo` returns input as output
-
-`sort` order list alphabetically
-
-`uniq` filter out duplicate lines
-
-`clear` clear Terminal window
-
-`$VAR` stores value of variable 
+`mkdir <name>` make directory  
+`cd <directory_name>` navigate into directory  
+`ls` list contents of directory  
+`cat <file_name>` display contents of file in Terminal  
+`touch <file_name>` make new file  
+`rm <file_name>` remove file  
+`nano <file_name>` create and/or edit a file, use ctrl-o to save and ctrl-x to exit  
+`cp <file1_name> <file2_name>` copy one file into another  
+`*.txt` select all files ending with txt (can be any ending)  
+`echo` returns input as output, i.e. returning value of variable  
+`clear` clear Terminal window  
+`$VAR` stores value of variable  
 
 ### Markdown
-Markdown is a language used on GitHub mainly to write README files. A file written in markdown on GitHub is indicated by .md, such as README.md. The formatting of Markdown is as follows:
-* Italic words are surrounded by _underscores_
-* Bold words are surrounded by **asterisks**
+Markdown is a language used on GitHub mainly to write README.md files. A file written in markdown on GitHub is indicated by .md. The formatting of Markdown is as follows:
+* _Italic_ words are surrounded by underscores
+* **Bold** words are surrounded by two asterisks on either side
 * Headers come in six sizes and begin with a hashtag #, one hashtag makes the largest size and six hashtags make the smallest size
-* Each item in an unordered list begins with an asterisk, and each item in an ordered list begins with a number and a period (1.) 
-  * Indented items in a list need to have two spaces before the asterisk
+* Each item in an unordered list begins with an asterisk, and each item in an ordered list begins with a number and a period 
+  * Indented items in a list have two spaces before the asterisk
 * Paragraphs need two spaces afterwards for a soft break or a return afterwards for a hard break
-* Links are made of two parts, a description written in [] and the link written in ()
-* Images are the same as links with a ! in front of the brackets
-* The tick above the tab key `creates monospace`
+* Links are made of two parts, a description written in [] and the link contained in ()
+* Images are formatted the same as links with a ! in front of the first brackets
+* The tick above the tab key `creates a monospace`
 
-### Create Github Account or Create new GitHub Repo
-1. Go to [the Github website](github.com/join) and enter a username, email address, and password. 
-2. Go to [the Github website](github.com/join) and add a new repo--give it a name and initialize it with a README file.
+### Create Github Account
+Go to [the Github website](github.com/join) and enter a username, email address, and password. 
 
 ### Create SSH Key on GitHub -- Only once per account
-SSH provides a secure channel in an unsecure network. SSH uses encryption, and on GitHub the user creates a pair of public and private keys which allows remote access (using the command line on Terminal). To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+SSH provides a secure channel in an unsecure network using encryption. On GitHub, the user creates a pair of public and private keys which allows remote access to a repo using the command line on Terminal. To [create a SSH key for GitHub](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/), go to Terminal. Type `ssh-keygen -t rsa -b 4096 -C "<your_email>"`. Press enter to save. Do not enter a passphrase. Then, go to GitHub settings. "SSH and GPG keys" is listed under "Personal settings" on the left side of the screen. Click "New SSH key" in the upper right corner. Copy the public version of the SSH key into the window on GitHub. [More instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 
-### Clone GitHub Repo to your computer
-[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone <SSH_key>`, which will clone the contents of the git repo to your computer. 
- 
+### Make a Github Pages Site and Clone it to your Computer
+ * [Github pages site](https://pages.github.com/)
+ * Create a new repository and name it `<username>.github.io`, substituting your username
+ * Open Terminal and type in the location of where you want to file your repository
+   * For example, to put the repository in Desktop, type `cd Desktop` on the command line
+ * Type in `git clone` and then the SSH version of the link, which can be found under "clone or download" on the repository page
+ * Type `cd <username>.github.io` which will navigate into the local GitHub repository on the computer
+ * Type:
+`git add --all`
+`git commit -m "initial commit"`
+`git push -u origin master` -- Adding updated files from a computer to GitHub requires these three steps every time.
+
+### Clone a GitHub Repo to your computer
+[Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone <SSH_key>`, which will clone the contents of the git repo to your computer. To navigate into this repo, type `cd <repo_name>`.
+
 ### Create a new file on your repo
-Create a program/function. Travis, CodeCov, SonarQube, etc. will all test this file(s). To pull the file from GitHub to your local computer, type `cd <repo_name>`, which will navigate into the repo and `git pull` which will pull the updated files on the repo from GitHub to the computer.
+Create a program in a new file. Travis, CodeCov, SonarQube, etc. will all test this file (or files). To pull the file from GitHub to your local computer, type `cd <repo_name>`, which will navigate into the repo and `git pull` which will pull the updated files on the repo from GitHub to the computer.
 
 ## Continuous Integration
-Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail if continuous integration is not used because changes can be made to the mainline that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the mainline and tests for every commit so that errors can be identified and corrected immediately. Continuous Integration can be paired with continuous delivery which would make software continually available for use.
+Continuous integration is the frequent compilation of all separate copies of a project to the main branch of a repository. Integration of a copy into the mainline can fail without continuous integration because changes can be made to the main branch after the copy is made that the copy would not reflect. The user would then have to revise his or her code to update changes, which is referred to as "integration hell" because it can take a long time. Continuous integration requires frequent merging of copies with the main branch and tests for every commit so that errors can be identified and corrected immediately.
 
 ## Travis CI
-[Travis CI](http://travis-ci.org/) can run on GitHub — log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a GitHub repository, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub, run `git push origin master` on Terminal to trigger the first build, and then Travis CI will run builds after every commit to your GitHub repository.
+[Travis CI](http://travis-ci.org/) can run on GitHub — log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a GitHub repository, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub and the tab for the repo is switched to on in Travis settings, Travis will run builds after every commit to the GitHub repo.
 
 ### Example of a .travis.yml file
 [Link to example c repository](https://github.com/laurelmcintyre/c)
@@ -102,14 +91,12 @@ Continuous integration is the frequent compilation of all separate copies of a p
         compiler:
           - gcc
           - clang 
-          
-* To start the first build, go to Travis and switch the tab from off to on on the new repo. The first build should start eventually.
 
 ### How to Display Build Passing Badge on GitHub
 A [badge](https://github.com/laurelmcintyre/c/blob/master/README.md) displays the status of your Travis CI build on your GitHub page. To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 
 ## Create a Deploy Key for the Repo
-In place of a personal access token which can be used to access all of an organization's repos, a deploy key (SSH key) is specific to one repo and therefore is safer. To create a deploy key, go to Terminal. 
+In place of a personal access token which can be used to access all of an organization's repos, a deploy key (SSH key) is specific to one repo and therefore is safer. For Docker, you will need both a Deploy key and a personal access token. To create a deploy key, go to Terminal. 
 
 * `git pull` makes sure the repo is up to date on the local machine  
 * `ssh-keygen -f deploy` to generate a deploy key  
@@ -138,7 +125,7 @@ The first command means the deploy key will be in the ssh folder and the second 
 * `git push` push changes to github  
 
 ## OR Create a Personal Access Token
-To create a personal access token, which is less secure option than the Deploy SSH key, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it SONARQUBE_GITHUB_TOKEN.
+To create a personal access token, which is less secure option than the Deploy SSH key, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it SONARQUBE_GITHUB_TOKEN. For Docker, you will need both a Deploy key and a personal access token.
 
 ## Cache
 Caches store data to speed up processes, for example, requests are temporarily stored so that the same request later could be served faster. Travis CI [caches dependencies and directories](https://docs.travis-ci.com/user/caching/) which makes the build  go quicker. To enable [ccache](https://ccache.samba.org/), add the following lines to the .travis.yml file.
@@ -158,22 +145,26 @@ Caches store data to speed up processes, for example, requests are temporarily s
 [Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add the new repo to "Repository Access" and hit save. Then [configure the .travis.yml file](https://docs.codecov.io/docs)(below), [add a .codecov.yml file](https://docs.codecov.io/v4.3.6/docs/codecov-yaml)(below), and CodeCov will be working.
 
 ### Additions to .travis.yml file needed for Code Coverage
-      sudo: required
-      
-      dist: trusty
-      
-      script:
-        - ${CC} --coverage -c <file_name>.c -o <file_name>.o
-        - ${CC} --coverage <file_name>.o -o <file_name>
-        - ./<file_name>
+    #sudo:required and dist:trusty both specify a trusty build environment
+    sudo: required
+
+    dist: trusty
+    
+    #${CC} is replaced by compilers
+    #runs coverage on files
+    script:
+      - ${CC} --coverage -c <file_name>.c -o <file_name>.o
+      - ${CC} --coverage <file_name>.o -o <file_name>
+      - ./<file_name>
+    
+    #if the compiler is clang and the build passes, then it uploads reports to CodeCov
+    after_success:
+      - if [ ${CC} = clang ]; then
+          bash <(curl -s https://codecov.io/bash) -F ${CC} --gcov-exec "llvm-cov gcov";
+        else
+          bash <(curl -s https://codecov.io/bash) -F ${CC};
+        fi
         
-      after_success:
-        - if [ ${CC} = clang ]; then
-            bash <(curl -s https://codecov.io/bash) -F ${CC} --gcov-exec "llvm-cov gcov";
-          else
-            bash <(curl -s https://codecov.io/bash) -F ${CC};
-          fi
-          
 ### Add .codecov.yml file
 The [.codecov.yml](https://docs.codecov.io/v4.3.6/docs/coverage-configuration) file controls the settings for CodeCov.
 A .codecov.yml file can look like this:
@@ -214,64 +205,62 @@ Then, make a sonar-project.properties file:
 
       sonar.projectName=<project_name>
 
-
       sonar.projectVersion=1.0
 
       sonar.sources=.
 
-
       sonar.sourceEncoding=UTF-8
 
 ### How to Post Quality Gate Badge on GitHub
-In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project_key>)`. 
+In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<repo_name>%3Amaster)](https://sonarqube.com/dashboard/id=<repo_name>%3Amaster)`. Type it into the README page.
 
 ## Doxygen 
 [Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages, mainly c or c++. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, navigate to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. Most of the configurations do not need to be changed, but make sure to change the project name to your repo name. Also, make sure `INPUT = ../..` and `GENERATE_HTML = YES`. Next, create a gh-pages branch of the repo by going to the repo settings, and under "GitHub Pages" it should say "Source" -- click on it and switch the branch to master.
 
 The first step to run Doxygen is to create a shell file which could be called generateDocumentationAndDeploy.sh. The .travis.yml file will reference this file, but having a separate shell file means that all of this source code does not have to be in .travis.yml. The ${TRAVIS_REPO_SLUG} variable refers to <username>/<repo_name>, so it does not have to be changed for every project. 
 
-      echo 'Setting up the script...'
+    echo 'Setting up the script...'
 
-      set -e
+    set -e
       
-      #make a directory called code_docs and navigaate to it
-      mkdir code_docs
-      cd code_docs
+    #make a directory called code_docs and navigaate to it
+    mkdir code_docs
+    cd code_docs
 
-      #clone the gh-pages branch of the repo and navigate there
-      git clone -b gh-pages https://github.com/${TRAVIS_REPO_SLUG}
-      cd ${TRAVIS_REPO_SLUG##*/}
+    #clone the gh-pages branch of the repo and navigate there
+    git clone -b gh-pages https://github.com/${TRAVIS_REPO_SLUG}
+    cd ${TRAVIS_REPO_SLUG##*/}
 
-      git config --global push.default simple
-      git config user.name "Travis CI"
-      git config user.email "travis@travis-ci.org"
+    git config --global push.default simple
+    git config user.name "Travis CI"
+    git config user.email "travis@travis-ci.org"
 
-      rm -rf *
+    rm -rf *
 
-      echo "" > .nojekyll
+    echo "" > .nojekyll
 
-      echo 'Generating Doxygen code documentation...'
+    echo 'Generating Doxygen code documentation...'
 
-      doxygen $DOXYFILE 2>&1 | tee doxygen.log
+    doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
-      #if the files are generated in html, add them to GitHub
-      if [ -d "html" ] && [ -f "html/index.html" ]; then
+    #if the files are generated in html, add them to GitHub
+    if [ -d "html" ] && [ -f "html/index.html" ]; then
 
-          echo 'Uploading documentation to the gh-pages branch...'
+        echo 'Uploading documentation to the gh-pages branch...'
 
-          git add --all
+        git add --all
 
-          git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
+        git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
 
-      #force push the documentation to GitHub -- the gh-pages branch gets rewritten with every commit
-      #if one of the above conditions is not met, the documentation will not push to GitHub
-          git push --force "git@github.com:${TRAVIS_REPO_SLUG}" > /dev/null 2>&1
-      else
-          echo '' >&2
-          echo 'Warning: No documentation (html) files have been found!' >&2
-          echo 'Warning: Not going to push the documentation to GitHub!' >&2
-          exit 1
-      fi
+    #force push the documentation to GitHub -- the gh-pages branch gets rewritten with every commit
+    #if one of the above conditions is not met, the documentation will not push to GitHub
+        git push --force "git@github.com:${TRAVIS_REPO_SLUG}" > /dev/null 2>&1
+    else
+        echo '' >&2
+        echo 'Warning: No documentation (html) files have been found!' >&2
+        echo 'Warning: Not going to push the documentation to GitHub!' >&2
+        exit 1
+    fi
     
 The .travis.yml requires changes as well:
     
@@ -309,42 +298,114 @@ To display some form of documentation, add comments to the top of the file being
 
 Doxygen documentation should publish on the gh-pages branch. To see the documentation displayed on a web browser, go into repo settings and click the link under "Your site is published at https://<username>.github.io/<repo_name>/". Add html after <repo_name>/ to see the published documentation.
 
-
 ## CMake
-[CMake](https://cmake.org/overview/) is a system that manages builds. To enable CMake, you will need a CMakeLists.txt file and edits to your .travis.yml file. Below is a simple CMakeLists.txt file that defines the project, executable, and target. 
+[CMake](https://cmake.org/overview/) is a system that manages builds. To enable CMake, you will need a CMakeLists.txt file and edits to your .travis.yml file.
 
-      cmake_minimum_required (VERSION 2.6)
-      project (<repo_name>)
-      add_executable(<repo_name> <file_name>.c)
+CMakeLists.txt file: 
 
-      set_property(TARGET <repo_name> PROPERTY CXX_STANDARD 11)
-      set_property(TARGET <repo_name> PROPERTY CXX_STANDARD_REQUIRED ON)
-      
-To add Doxygen commands to the MakeFile instead of the .travis.yml file, add the following after the above text.
+    #defines the project, executable, and target
+    cmake_minimum_required (VERSION 2.6)
+    project (<repo_name>)
+    add_executable(<repo_name> <file_name>.cpp)
 
-      find_package(Doxygen)
-      if (DOXYGEN_FOUND)
-        add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/html/index.html
-          COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE
-          DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE
-          COMMENT "Build doxygen documentation")
-        add_custom_target(html DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/html/index.html)
-      endif()
+    set_property(TARGET <repo_name> PROPERTY CXX_STANDARD 11)
+    set_property(TARGET <repo_name> PROPERTY CXX_STANDARD_REQUIRED ON)
       
-      option(ENABLE_COVERAGE_BUILD "Do a coverage build" ON)
+    #add Doxygen commands to the CMakeLists.txt file instead of the .travis.yml file
+    find_package(Doxygen)
+    if (DOXYGEN_FOUND)
+      add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/html/index.html
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE
+        DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE
+        COMMENT "Build doxygen documentation")
+      add_custom_target(html DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/html/index.html)
+    endif()
       
+    option(ENABLE_COVERAGE_BUILD "Do a coverage build" OFF)
+    if(ENABLE_COVERAGE_BUILD)
+      message(STATUS "Enabling coverage build")
+      set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage -O0")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -O0")
+      set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+      set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+    endif()
+
+    enable_testing()
+    add_test (TestRun cpp-cmake)
+    
 Finally, to configure the .travis.yml file correctly, add this to the .travis.yml file and replace the existing script with the following script (leaving sonar-scanner in place).
 
-      addons:
-        apt:
-          packages:
-            - cmake-data
-            - cmake
+    #install cmake packages
+    addons:
+      apt:
+        packages:
+          - cmake-data
+          - cmake
 
-      script:
-        - cmake . -DENABLE_COVERAGE_BUILD=ON
-        - make
-        - make html
+    script:
+      - cmake . -DENABLE_COVERAGE_BUILD=ON
+      - make
+      #run tests
+      - make test
+      #run make on doxygen (html)
+      - make html
+
+The final .travis.yml file for CMake will look like this:
+
+    language: cpp
+
+    sudo: required
+
+    dist: trusty
+
+    branches:
+      except:
+        - gh-pages
+
+    env:
+      global:
+        - DOXYFILE: $TRAVIS_BUILD_DIR/DOXYFILE
+
+    addons:
+      sonarcloud:
+        organization: <username>-github
+      apt:
+        packages:
+          - doxygen
+          - doxygen-doc
+          - doxygen-latex
+          - doxygen-gui
+          - graphviz
+          - cmake-data
+          - cmake
+
+    before_install:
+      - ccache -z
+
+    script:
+      - sonar-scanner
+      - cmake . -DENABLE_COVERAGE_BUILD=ON
+      - make
+      - make test
+      - make html
+
+    compiler:
+      - g++
+
+    after_success:
+      - ccache -s
+      - bash <(curl -s https://codecov.io/bash)
+      - openssl aes-256-cbc -K $<encrypted_key> -iv $<encrypted_key> -in deploy.enc -out deploy -d
+      - mv deploy ~/.ssh/id-rsa
+      - chmod 600 ~/.ssh/id-rsa
+      - chmod +x generateDocumentationAndDeploy.sh
+      - if [[ ${TRAVIS_JOB_NUMBER} = *.1 ]]; then ./generateDocumentationAndDeploy.sh; fi
+
+    cache:
+      ccache: true
+      directories:
+    - $HOME/.sonar
+
 
 ## Docker
 Docker is a software container platform packages the libraries and settings of a piece of software and makes it perform the same regardless of the device it is on. To use Docker, make an account and enter a username, email, and password. Go to DockerHub settings under "linked accounts and services" and link GitHub. 
@@ -419,88 +480,88 @@ ubuntu:
 In the repo, delete the sonar-project.properties file and the generateDocumentationAndDeploy.sh file. The .travis.yml file, CMakeLists.txt file, and DOXYFILE will be edited, and of course you will make a Dockerfile. Much of the travis commands are placed instead in the Dockerfile. Therefore, the commands are all in the same place and now can be built from any machine because of Docker. Travis variables/environmental variables are also transferred to Docker. Four environmental variables will need to be set in Travis or else the build will fail because the variables will not exist: DOCKER_USERNAME, DOCKER_PASSWORD, SONARQUBE_GITHUB_TOKEN (github repo token), and SONARQUBE_TOKEN (instructions above under SonarQube on how to generate token in SonarCloud). This example also uses a SSH deploy key, which is automatically put under Travis environmental variables. The other variables below, i.e. ${CC} or ${TRAVIS_JOB_NUMBER}, are autogenerated by Travis.
 The new .travis.yml looks like this:
 
-     language: c
+    language: c
 
-     sudo: required
+    sudo: required
      
-     #run docker
-     services:
-       - docker
+    #run docker
+    services:
+      - docker
        
-     #runs 8 different builds--scripts with the variables COVERAGE, SONARQUBE, etc. will only run when set to ON
-     env:
-       matrix:
-         - DISTRO=ubuntu
-         - DISTRO=ubuntu COVERAGE=ON SONARQUBE=ON
+    #runs 8 different builds--scripts with the variables COVERAGE, SONARQUBE, etc. will only run when set to ON
+    env:
+      matrix:
+        - DISTRO=ubuntu
+        - DISTRO=ubuntu COVERAGE=ON SONARQUBE=ON
 
-         - DISTRO=fedora DOCKERHUB=ON
-         - DISTRO=fedora COVERAGE=ON
+        - DISTRO=fedora DOCKERHUB=ON
+        - DISTRO=fedora COVERAGE=ON
 
-     script:
-       - cp -vr docker ${HOME}/docker
-       - sed -i "1s/fedora/${DISTRO}/" ${HOME}/docker/Dockerfile
-       #navigate to parent directory
-       - cd ../../
-       - mv -v ${TRAVIS_REPO_SLUG} $HOME/docker/git-src
-       - cp -r $HOME/.ccache ${HOME}/docker/ccache
-       - cp -r $HOME/.sonar ${HOME}/docker/sonar
-       # transfer travis variables to docker
-       - docker build --build-arg COVERAGE=${COVERAGE}
-                     --build-arg CC=${CC} --build-arg CXX=${CXX}
-                     --build-arg SONARQUBE_GITHUB_TOKEN=${SONARQUBE_GITHUB_TOKEN}
-                     --build-arg SONARQUBE=${SONARQUBE} --build-arg SONARQUBE_TOKEN=${SONARQUBE_TOKEN}
-                     --build-arg TRAVIS_BRANCH=${TRAVIS_BRANCH} --build-arg TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER}
-                     --build-arg TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST} --build-arg TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
-                     --build-arg TRAVIS_TAG=${TRAVIS_TAG} --build-arg TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG}
-                     --build-arg CI=${CI} --build-arg TRAVIS=${TRAVIS} --build-arg TRAVIS_OS_NAME=${DISTRO}
-                     --build-arg TRAVIS_COMMIT=${TRAVIS_COMMIT}
-                     -t ${TRAVIS_REPO_SLUG}:latest ${HOME}/docker/ &&
-         rm -rf ${HOME}/.ccache &&
-         CON=$(docker run -d ${TRAVIS_REPO_SLUG}:latest /bin/bash) &&
-         docker cp ${CON}:/home/user/.ccache ${HOME}/ &&
-         docker cp ${CON}:/home/user/.sonar ${HOME}/
+    script:
+      - cp -vr docker ${HOME}/docker
+      - sed -i "1s/fedora/${DISTRO}/" ${HOME}/docker/Dockerfile
+      #navigate to parent directory
+      - cd ../../
+      - mv -v ${TRAVIS_REPO_SLUG} $HOME/docker/git-src
+      - cp -r $HOME/.ccache ${HOME}/docker/ccache
+      - cp -r $HOME/.sonar ${HOME}/docker/sonar
+      # transfer travis variables to docker
+      - docker build --build-arg COVERAGE=${COVERAGE}
+                    --build-arg CC=${CC} --build-arg CXX=${CXX}
+                    --build-arg SONARQUBE_GITHUB_TOKEN=${SONARQUBE_GITHUB_TOKEN}
+                    --build-arg SONARQUBE=${SONARQUBE} --build-arg SONARQUBE_TOKEN=${SONARQUBE_TOKEN}
+                    --build-arg TRAVIS_BRANCH=${TRAVIS_BRANCH} --build-arg TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER}
+                    --build-arg TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST} --build-arg TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
+                    --build-arg TRAVIS_TAG=${TRAVIS_TAG} --build-arg TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG}
+                    --build-arg CI=${CI} --build-arg TRAVIS=${TRAVIS} --build-arg TRAVIS_OS_NAME=${DISTRO}
+                    --build-arg TRAVIS_COMMIT=${TRAVIS_COMMIT}
+                    -t ${TRAVIS_REPO_SLUG}:latest ${HOME}/docker/ &&
+        rm -rf ${HOME}/.ccache &&
+        CON=$(docker run -d ${TRAVIS_REPO_SLUG}:latest /bin/bash) &&
+        docker cp ${CON}:/home/user/.ccache ${HOME}/ &&
+        docker cp ${CON}:/home/user/.sonar ${HOME}/
 
-     after_success:
-       #DOCKER_USERNAME and DOCKER_PASSWORD must be set on travis settings
-       #if they are set, it will log in to docker and push to docker
-       - if [[ ${DOCKERHUB} && ${DOCKER_USERNAME} && ${DOCKER_PASSWORD} && ${TRAVIS_BRANCH} == master && ${TRAVIS_PULL_REQUEST} == false ]]; then
-           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-           if [[ ${CC} == gcc ]]; then docker push "${TRAVIS_REPO_SLUG}:latest"; fi;
-         fi
-       #only runs on builds where COVERAGE=ON and DISTRO=fedora
-       - if [[ ${DISTRO} = fedora && ${COVERAGE} && ${CC} = gcc ]]; then
-           cd $HOME/docker/git-src;
-           #copies encrypted deploy key
-           cp deploy.enc $HOME;
-           #move to gh-pages branch
-           git fetch origin gh-pages && git checkout -b gh-pages FETCH_HEAD;
-           docker cp ${CON}:/home/user/git-src/build/html . ;
-           mv html/* .;
-           rmdir html; 
-           git add --all;
-           #must be using a SSH deploy key--replace value
-           if [[ ${TRAVIS_BRANCH} = master && ${<encrypted_SSH_deploy_key>} && ${<encrypted_SSH_deploy_key>} && ${TRAVIS_PULL_REQUEST} == false ]]; then
-             git config --global user.name "Automatic Deployment (Travis CI)";
-             git config --global user.email "abc@abc.com";
-             git commit -m "Documentation Update";
-             openssl aes-256-cbc -K $<encrypted_SSH_deploy_key> -iv $<encrypted_SSH_deploy_key> -in $HOME/deploy.enc -out ~/.ssh/id_rsa -d;
-             chmod 600 ~/.ssh/id_rsa;
-             #push doxygen documentation
-             git push git@github.com:${TRAVIS_REPO_SLUG} gh-pages:gh-pages;
-           else
-             git status;
-             git diff --cached --no-color | head -n 500;
-           fi;
-         fi
+    after_success:
+      #DOCKER_USERNAME and DOCKER_PASSWORD must be set on travis settings
+      #if they are set, it will log in to docker and push to docker
+      - if [[ ${DOCKERHUB} && ${DOCKER_USERNAME} && ${DOCKER_PASSWORD} && ${TRAVIS_BRANCH} == master && ${TRAVIS_PULL_REQUEST} == false ]]; then
+          docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+          if [[ ${CC} == gcc ]]; then docker push "${TRAVIS_REPO_SLUG}:latest"; fi;
+        fi
+      #only runs on builds where COVERAGE=ON and DISTRO=fedora
+      - if [[ ${DISTRO} = fedora && ${COVERAGE} && ${CC} = gcc ]]; then
+          cd $HOME/docker/git-src;
+          #copies encrypted deploy key
+          cp deploy.enc $HOME;
+          #move to gh-pages branch
+          git fetch origin gh-pages && git checkout -b gh-pages FETCH_HEAD;
+          docker cp ${CON}:/home/user/git-src/build/html . ;
+          mv html/* .;
+          rmdir html; 
+          git add --all;
+          #must be using a SSH deploy key--replace value
+          if [[ ${TRAVIS_BRANCH} = master && ${<encrypted_SSH_deploy_key>} && ${<encrypted_SSH_deploy_key>} && ${TRAVIS_PULL_REQUEST} == false ]]; then
+            git config --global user.name "Automatic Deployment (Travis CI)";
+            git config --global user.email "abc@abc.com";
+            git commit -m "Documentation Update";
+            openssl aes-256-cbc -K $<encrypted_SSH_deploy_key> -iv $<encrypted_SSH_deploy_key> -in $HOME/deploy.enc -out ~/.ssh/id_rsa -d;
+            chmod 600 ~/.ssh/id_rsa;
+            #push doxygen documentation
+            git push git@github.com:${TRAVIS_REPO_SLUG} gh-pages:gh-pages;
+          else
+            git status;
+            git diff --cached --no-color | head -n 500;
+          fi;
+        fi
+        
+    cache:
+      ccache: true
+      directories:
+        - $HOME/.sonar
 
-     cache:
-       ccache: true
-       directories:
-         - $HOME/.sonar
-
-     compiler:
-       - gcc
-       - clang
+    compiler:
+      - gcc
+      - clang
 
 In the DOXYFILE, change the name to DOXYFILE.in and the settings to `INPUT = @CMAKE_SOURCE_DIR@`, `GENERATE_LATEX = NO`, and `GENERATE_XML = YES`.
 
