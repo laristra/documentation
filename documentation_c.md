@@ -214,48 +214,49 @@ In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://so
 
 The first step to run Doxygen is to create a shell file which could be called generateDocumentationAndDeploy.sh. The .travis.yml file will reference this file, but having a separate shell file means that all of this source code does not have to be in .travis.yml. The ${TRAVIS_REPO_SLUG} variable refers to /<repo_name>, so it does not have to be changed for every project.
 
-      echo 'Setting up the script...'
 
-      set -e
+    echo 'Setting up the script...'
 
-      #make a directory called code_docs and navigaate to it
-      mkdir code_docs
-      cd code_docs
+    set -e
+    
+    #make a directory called code_docs and navigaate to it
+    mkdir code_docs
+    cd code_docs
 
-      #clone the gh-pages branch of the repo and navigate there
-      git clone -b gh-pages https://github.com/${TRAVIS_REPO_SLUG}
-      cd ${TRAVIS_REPO_SLUG##*/}
+    #clone the gh-pages branch of the repo and navigate there
+    git clone -b gh-pages https://github.com/${TRAVIS_REPO_SLUG}
+    cd ${TRAVIS_REPO_SLUG##*/}
 
-      git config --global push.default simple
-      git config user.name "Travis CI"
-      git config user.email "travis@travis-ci.org"
+    git config --global push.default simple
+    git config user.name "Travis CI"
+    git config user.email "travis@travis-ci.org"
 
-      rm -rf *
+    rm -rf *
 
-      echo "" > .nojekyll
+    echo "" > .nojekyll
 
-      echo 'Generating Doxygen code documentation...'
+    echo 'Generating Doxygen code documentation...'
 
-      doxygen $DOXYFILE 2>&1 | tee doxygen.log
+    doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
-      #if the files are generated in html, add them to GitHub
-      if [ -d "html" ] && [ -f "html/index.html" ]; then
+    #if the files are generated in html, add them to GitHub
+    if [ -d "html" ] && [ -f "html/index.html" ]; then
 
-          echo 'Uploading documentation to the gh-pages branch...'
+        echo 'Uploading documentation to the gh-pages branch...'
 
-          git add --all
+        git add --all
 
-          git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
+        git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
 
-      #force push the documentation to GitHub -- the gh-pages branch gets rewritten with every commit
-      #if one of the above conditions is not met, the documentation will not push to GitHub
-          git push --force "git@github.com:${TRAVIS_REPO_SLUG}" > /dev/null 2>&1
-      else
-          echo '' >&2
-          echo 'Warning: No documentation (html) files have been found!' >&2
-          echo 'Warning: Not going to push the documentation to GitHub!' >&2
-          exit 1
-      fi
+    #force push the documentation to GitHub -- the gh-pages branch gets rewritten with every commit
+    #if one of the above conditions is not met, the documentation will not push to GitHub
+        git push --force "git@github.com:${TRAVIS_REPO_SLUG}" > /dev/null 2>&1
+    else
+        echo '' >&2
+        echo 'Warning: No documentation (html) files have been found!' >&2
+        echo 'Warning: Not going to push the documentation to GitHub!' >&2
+        exit 1
+    fi
       
 The .travis.yml requires changes as well:
 
