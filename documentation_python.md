@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, Pydoc, and Docker with python repository as example
+How to use GitHub, Travis CI, CodeCov, SonarQube, Pydoc, and Docker with [python repository](https://github.com/laurelmcintyre/python-ci) as example
 
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. README files provide a description of a project.
