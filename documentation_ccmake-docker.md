@@ -1,5 +1,6 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, CMake, and Docker using c with [example ccmake-docker repository](https://github.com/laurelmcintyre/ccmake-docker)
+How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, CMake, and Docker using c with [example ccmake-docker repository](https://github.com/laurelmcintyre/ccmake-docker) 
+This repo goes through the same steps as the cpp-cmake repo. If you want to create the repo with Docker from the start, read the Docker instructions (bottom of this file) first.
 
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. Source code is computer instructions readable to humans, which is helpful because other users can study and further develop on their own. README files provide a description of a project.
@@ -95,7 +96,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
 ### Example of a .travis.yml file
 [Link to example c repository](https://github.com/laurelmcintyre/c)
 * `language: c` means that the project is written in c.
-*  `script: ${CC} <file-name>.c -o <file-name>` runs the compiler gcc or clang on a file
+*  `script: ${CC} <file-name>.c -o <file-name>` runs the compiler on a file -- the ${CC} variable is replaced by the specified compilers, gcc and clang, and runs two versions of each build
 *  Specify the compiler which the script runs on
 
         compiler:
@@ -105,7 +106,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
 * To start the first build, go to Travis and switch the tab from off to on on the new repo. The first build should start eventually.
 
 ### How to Display Build Passing Badge on GitHub
-A [badge](https://github.com/laurelmcintyre/c/blob/master/README.md) displays the status of your build from Travis CI onto your GitHub page. To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
+A [badge](https://github.com/laurelmcintyre/c/blob/master/README.md) displays the status of your Travis CI build on your GitHub page. To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 
 ## Create a Deploy Key for the Repo
 In place of a personal access token which can be used to access all of an organization's repos, a deploy key (SSH key) is specific to one repo and therefore is safer. To create a deploy key, go to Terminal. 
@@ -140,7 +141,9 @@ The first command means the deploy key will be in the ssh folder and the second 
 To create a personal access token, which is less secure option than the Deploy SSH key, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
 
 ## Cache
-Caches store data to speed up processes, for example, requests are temporarily stored so that the same request later could be served faster. Travis CI [caches dependencies and directories](https://docs.travis-ci.com/user/caching/) which makes the build  go quicker. To enable caching in Travis, add the following lines to the .travis.yml file.
+Caches store data to speed up processes, for example, requests are temporarily stored so that the same request later could be served faster. Travis CI [caches dependencies and directories](https://docs.travis-ci.com/user/caching/) which makes the build  go quicker. To enable [ccache](https://ccache.samba.org/), add the following lines to the .travis.yml file.
+
+    #install ccache in before_install, then run it if the build passes
 
     before_install:
       - ccache -z
@@ -152,7 +155,7 @@ Caches store data to speed up processes, for example, requests are temporarily s
       ccache: true
       
 ## Code Coverage
-[Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add the new repo to "Repository Access" and hit save. Then [configure the .travis.yml file](https://docs.codecov.io/docs)(below), [add a .codecov.yml file](https://docs.codecov.io/v4.3.6/docs/codecov-yaml)(below), and the code coverage account page will be working.
+[Code coverage](http://codecov.io/) shows what percent of code is being tested by Travis in builds. A high percentage is ideal to guard against bugs. To create a code coverage account, log in through GitHub and click "Add Repository." Codecov provides a token for uploading reports which is unnecessary for Travis CI. Go to account settings on GitHub, install CodeCov, and under "Configure," add the new repo to "Repository Access" and hit save. Then [configure the .travis.yml file](https://docs.codecov.io/docs)(below), [add a .codecov.yml file](https://docs.codecov.io/v4.3.6/docs/codecov-yaml)(below), and CodeCov will be working.
 
 ### Additions to .travis.yml file needed for Code Coverage
       sudo: required
@@ -172,19 +175,27 @@ Caches store data to speed up processes, for example, requests are temporarily s
           fi
           
 ### Add .codecov.yml file
-The .codecov.yml file controls the settings for CodeCov, and is used for customization if you don't want to use the default.
+The [.codecov.yml](https://docs.codecov.io/v4.3.6/docs/coverage-configuration) file controls the settings for CodeCov.
 A .codecov.yml file can look like this:
 
       coverage:
         precision: 1
         round: down
       range: "70...100"
+      
+Range specifies the code coverage range in percent corresponding to color. The low number, in this case 70, means that code coverage under or equal to 70% would show a red background. 100% would be green, and there would be a range of colors inbetween. Depending on the project, different ranges of code can be expected, so 100% does not necessarily have to be the top number if it is unattainable. 
+
+Round specifies how the code percentage should be rounded, whether up, down, or nearest.
+
+Precision specifies how many decimal points CodeCov will round the percent to. precision: 1 means that the percentage would be rounded to the tenth, precision: 2 would round to the hundredth, and so on.
+
+These three settings are the minimum configuration, but there are more [optional settings](https://docs.codecov.io/v4.3.6/docs/codecov-yaml) that you can add to specify the configuration of CodeCov for your project.
 
 ### How to Display Code Coverage Badge on Github
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## SonarQube
-SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions/setting can be set) which must all be met in order for a project to pass. For example, in order to pass, an example project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
+SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions can be set) which must all be met in order for a project to pass. For example, in order to pass, a default project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
 
       addons:
         sonarcloud:
@@ -194,7 +205,6 @@ SonarQube is meant to improve code quality. It progresses through a series of co
         - sonar-scanner
 
       cache:
-        ccache: true
         directories:
           - $HOME/.sonar
           
@@ -216,17 +226,19 @@ Then, make a sonar-project.properties file:
 In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<project-key>)](https://sonarqube.com/dashboard/id=<project_key>)`. 
 
 ## Doxygen 
-[Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, go to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. The only things that necessarily need to be changed are PROJECT_NAME and INPUT (INPUT, if using the shell file (below), should be set equal to ../..). Next, create a gh-pages branch of the repo by going to the repo settings, and under GitHub Pages it should say "Source" -- click on it and switch the branch to master.
+[Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages, mainly c or c++. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, navigate to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. Most of the configurations do not need to be changed, but make sure to change the project name to your repo name. Also, make sure `INPUT = ../..` and `GENERATE_HTML = YES`. Next, create a gh-pages branch of the repo by going to the repo settings, and under "GitHub Pages" it should say "Source" -- click on it and switch the branch to master.
 
-The first step to run Doxygen is to create a shell file which could be called generateDocumentationAndDeploy.sh. The .travis.yml file will reference this file, but having a separate shell file means that all of this source code does not have to be in .travis.yml. The TRAVIS_REPO_SLUG variable refers to <username>/<repo_name>, so it does not have to be changed for every project. 
+The first step to run Doxygen is to create a shell file which could be called generateDocumentationAndDeploy.sh. The .travis.yml file will reference this file, but having a separate shell file means that all of this source code does not have to be in .travis.yml. The ${TRAVIS_REPO_SLUG} variable refers to <username>/<repo_name>, so it does not have to be changed for every project. 
 
       echo 'Setting up the script...'
 
       set -e
-
+      
+      #make a directory called code_docs and navigaate to it
       mkdir code_docs
       cd code_docs
 
+      #clone the gh-pages branch of the repo and navigate there
       git clone -b gh-pages https://github.com/${TRAVIS_REPO_SLUG}
       cd ${TRAVIS_REPO_SLUG##*/}
 
@@ -242,6 +254,7 @@ The first step to run Doxygen is to create a shell file which could be called ge
 
       doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
+      #if the files are generated in html, add them to GitHub
       if [ -d "html" ] && [ -f "html/index.html" ]; then
 
           echo 'Uploading documentation to the gh-pages branch...'
@@ -250,7 +263,8 @@ The first step to run Doxygen is to create a shell file which could be called ge
 
           git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
 
-
+      #force push the documentation to GitHub -- the gh-pages branch gets rewritten with every commit
+      #if one of the above conditions is not met, the documentation will not push to GitHub
           git push --force "git@github.com:${TRAVIS_REPO_SLUG}" > /dev/null 2>&1
       else
           echo '' >&2
@@ -259,16 +273,18 @@ The first step to run Doxygen is to create a shell file which could be called ge
           exit 1
       fi
     
-The .travis.yml requires changes as well. Doxygen will not generate documentation for the gh-pages branch because it is where the auto-generated files from Doxygen are pushed to. The addons install packages for doxygen to run and the after_success refers to the generateDocumentationAndDeploy.sh file which was just made -- the `if [[ ${TRAVIS_JOB_NUMBER} = *.1 ]]` means that in a build matrix, Doxygen will only generate documentation on the first build. 
+The .travis.yml requires changes as well:
     
+      #travis will ignore the gh-pages branch because the auto-generated Doxygen files are pushed there
       branches:
         except:
           - gh-pages
-
+     
       env:
         global:
           - DOXYFILE: $TRAVIS_BUILD_DIR/DOXYFILE
-
+          
+      #install doxygen packages
       addons:
         apt:
           packages:
@@ -277,7 +293,9 @@ The .travis.yml requires changes as well. Doxygen will not generate documentatio
             - doxygen-latex
             - doxygen-gui
             - graphviz
-
+            
+      #refers to shell file that was just made
+      #only run the shell file if it is the first build, aka the first compiler
       after_success:
         - chmod +x generateDocumentationAndDeploy.sh
         - if [[ ${TRAVIS_JOB_NUMBER} = *.1 ]]; then ./generateDocumentationAndDeploy.sh; fi
@@ -289,7 +307,7 @@ To display some form of documentation, add comments to the top of the file being
       /** \brief a helloworld program in c
        */
 
-Doxygen documentation should publish on the gh-pages branch. To find the documentation displayed on a web browser, go into repo settings and click the link under "Your site is published at https://<username>.github.io/<repo_name>/". Add html after <repo_name>/ to see the published documentation.
+Doxygen documentation should publish on the gh-pages branch. To see the documentation displayed on a web browser, go into repo settings and click the link under "Your site is published at https://<username>.github.io/<repo_name>/". Add html after <repo_name>/ to see the published documentation.
 
 
 ## CMake
@@ -297,7 +315,7 @@ Doxygen documentation should publish on the gh-pages branch. To find the documen
 
       cmake_minimum_required (VERSION 2.6)
       project (<repo_name>)
-      add_executable(<repo_name> <file_name>.cpp)
+      add_executable(<repo_name> <file_name>.c)
 
       set_property(TARGET <repo_name> PROPERTY CXX_STANDARD 11)
       set_property(TARGET <repo_name> PROPERTY CXX_STANDARD_REQUIRED ON)
@@ -324,12 +342,78 @@ Finally, to configure the .travis.yml file correctly, add this to the .travis.ym
             - cmake
 
       script:
-        - cmake .
         - cmake . -DENABLE_COVERAGE_BUILD=ON
         - make
-        - ./<repo_name>
+        - make html
 
 ## Docker
 Docker is a software container platform packages the libraries and settings of a piece of software and makes it perform the same regardless of the device it is on. To use Docker, make an account and enter a username, email, and password. Go to DockerHub settings under "linked accounts and services" and link GitHub. 
 
-First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo.
+First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo. The Dockerfile will refer to the build environment and pull from it. This example uses Fedora and Ubunutu. In the buildenv repo, there is a .travis.yml file, a fedora file, and an ubuntu file.
+.travis.yml:
+
+    language: c 
+
+    sudo: required
+
+    services:
+     - docker
+
+    env:
+      matrix:
+        - DISTRO=fedora DOCKERHUB=true
+        - DISTRO=ubuntu DOCKERHUB=true
+
+    script:
+      - mkdir ${HOME}/docker
+      - cp -v ${DISTRO} ${HOME}/docker/Dockerfile
+      - if [[ ${TRAVIS_BRANCH} != master ]]; then TAG="${TAG}_${TRAVIS_BRANCH}"; fi
+      - docker build -t ${TRAVIS_REPO_SLUG}:${DISTRO}${TAG} ${HOME}/docker/
+
+    after_success:
+      - shopt -s extglob && [[ ${TRAVIS_BRANCH} = @(master|refactor) ]] && DEPLOY=yes
+      - if [[ ${DOCKERHUB} = true && ${DOCKER_USERNAME} && ${DOCKER_PASSWORD} && ${TRAVIS_PULL_REQUEST} == false && ${DEPLOY} ]]; then
+          docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+          docker push "${TRAVIS_REPO_SLUG}:${DISTRO}${TAG}";
+    fi
+
+fedora:
+    #pulls from the latest image of fedora
+    FROM fedora:latest
+    RUN dnf install -y make cmake git gcc-c++ gcc-gfortran flex patch doxygen graphviz pandoc python2 openmpi-devel exodusii-devel cereal-devel lapack-devel scotch-devel metis-devel environment-modules python-pip clang llvm compiler-rt ccache texlive-epstopdf-bin ghostscript-core texlive-latex-bin-bin texlive-collection-fontsrecommended texlive-fancyhdr findutils texlive-booktabs gdb wget curl lcov
+    RUN wget -O /usr/bin/doxy-coverage https://raw.githubusercontent.com/alobbs/doxy-coverage/master/doxy-coverage.py
+    RUN chmod +x /usr/bin/doxy-coverage
+
+    RUN groupadd -r user
+    RUN useradd -r -m -g user user
+    USER user
+    ENV PATH=/usr/lib64/ccache:${PATH}${PATH:+:}/usr/lib64/openmpi/bin/
+    ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:}/usr/lib64/openmpi/lib/
+    #ENV MPI_INCLUDE=/usr/include/openmpi-x86_64
+    #ENV MPI_LIB=/usr/lib64/openmpi/lib
+    ENV PYTHONPATH=/usr/local/lib/python2.7/site-packages${PYTHONPATH:+:}${PYTHONPATH}
+    WORKDIR /home/user
+    RUN pip install --user codecov coverxygen
+    
+ubuntu:
+
+    FROM ubuntu:latest
+    RUN apt-get -q update -y
+    RUN apt-get -qq install -y make cmake cmake-data git g++ gfortran flex doxygen graphviz pandoc python2.7 libopenmpi-dev libcereal-dev liblapacke-dev libexodusii-dev libscotch-dev libmetis-dev python-pip texlive-font-utils clang llvm ccache texlive-latex-base texlive-fonts-recommended texlive-latex-recommended gdb wget curl lcov
+    RUN wget -O /usr/bin/doxy-coverage https://raw.githubusercontent.com/alobbs/doxy-coverage/master/doxy-coverage.py
+    RUN chmod +x /usr/bin/doxy-coverage
+
+    RUN apt-get install -y openjdk-8-jdk unzip software-properties-common python-software-properties
+    RUN wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.8.zip https://sonarqube.com/static/cpp/build-wrapper-linux-x86.zip
+    RUN unzip sonar-scanner-2.8.zip -d /sonarqube/
+    RUN unzip build-wrapper-linux-x86.zip -d /sonarqube/
+    ENV PATH=${PATH}${PATH:+:}/sonarqube/build-wrapper-linux-x86:/sonarqube/sonar-scanner-2.8/bin
+
+    RUN groupadd -r user
+    RUN useradd -r -m -g user user
+    USER user
+    ENV PATH=/usr/lib/ccache:${PATH}
+    WORKDIR /home/user
+    RUN pip install --user codecov coverxygen
+
+In the repo, the sonar-project.properties file and the generateDocumentationAndDeploy.sh file will be deleted, and the .travis.yml file, CMakeLists.txt file, and DOXYFILE will be edited. Much of the travis commands are placed instead in the Dockerfile. Therefore, the commands are all in the same place and now can be built from any machine because of Docker.
