@@ -87,7 +87,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
           - g++
           
 ### How to Display Build Passing Badge on GitHub
-A [badge]([![Build Status](https://travis-ci.org/laurelmcintyre/cpp-cmake.svg?branch=master)](https://travis-ci.org/laurelmcintyre/cpp-cmake)) displays the status of your travis build on your GitHub page. To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
+A badge([![Build Status](https://travis-ci.org/laurelmcintyre/cpp-cmake.svg?branch=master)](https://travis-ci.org/laurelmcintyre/cpp-cmake)) displays the status of your travis build on your GitHub page. To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 
 ## Create a Deploy Key for the Repo
 In place of a personal access token which can be used to access all of an organization's repos, a deploy key (SSH key) is specific to one repo and therefore is safer. To create a deploy key, go to Terminal. 
