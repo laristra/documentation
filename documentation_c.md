@@ -161,7 +161,7 @@ Caches store data to speed up processes, for example, requests are temporarily s
         fi
           
 ### Add .codecov.yml file
-The .codecov.yml file controls the settings for CodeCov, and is used for customization if you don't want to use the default.
+The [.codecov.yml](https://docs.codecov.io/v4.3.6/docs/coverage-configuration) file controls the settings for CodeCov.
 A .codecov.yml file can look like this:
 
       coverage:
