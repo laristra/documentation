@@ -138,7 +138,7 @@ The first command means the deploy key will be in the ssh folder and the second 
 * `git push` push changes to github  
 
 ## OR Create a Personal Access Token
-To create a personal access token, which is less secure option than the Deploy SSH key, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
+To create a personal access token, which is less secure option than the Deploy SSH key, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it SONARQUBE_GITHUB_TOKEN.
 
 ## Cache
 Caches store data to speed up processes, for example, requests are temporarily stored so that the same request later could be served faster. Travis CI [caches dependencies and directories](https://docs.travis-ci.com/user/caching/) which makes the build  go quicker. To enable [ccache](https://ccache.samba.org/), add the following lines to the .travis.yml file.
@@ -195,7 +195,7 @@ These three settings are the minimum configuration, but there are more [optional
 Under settings on the Code Coverage website, click on "Badge." Copy the markdown version and paste it in the README file on GitHub. 
 
 ## SonarQube
-SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions can be set) which must all be met in order for a project to pass. For example, in order to pass, a default project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
+SonarQube is meant to improve code quality. It progresses through a series of conditions (the default conditions can be set) which must all be met in order for a project to pass. For example, in order to pass, a default project must have code coverage greater than 80% and a maintainability rating, reliability rating, and security rating all equal to A. This default setting applies to all future projects unless changed. SonarQube checks for bugs, vulnerabilities, code smells (parts of code which indicate bigger, underlying problem with the code), and duplications. To make a SonarQube account, log in through your GitHub account. Then, go to "My Account" in SonarQube, click on "Security," and "Generate Token." Go to Travis project settings and enter the token into Environmental Variables and name it SONARQUBE_TOKEN. Travis has an [instruction page](https://docs.travis-ci.com/user/sonarqube/) on how to configure the .travis.yml file. The file will require the organization key, which can be found under your username on the Account Settings on sonarcloud (it should be username-github). You will need to add these lines to your .travis.yml file:
 
       addons:
         sonarcloud:
@@ -349,7 +349,7 @@ Finally, to configure the .travis.yml file correctly, add this to the .travis.ym
 ## Docker
 Docker is a software container platform packages the libraries and settings of a piece of software and makes it perform the same regardless of the device it is on. To use Docker, make an account and enter a username, email, and password. Go to DockerHub settings under "linked accounts and services" and link GitHub. 
 
-First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo. The Dockerfile will refer to the build environment and pull from it. This example uses Fedora and Ubunutu. In the buildenv repo, there is a .travis.yml file, a fedora file, and an ubuntu file.
+First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo. The Dockerfile will refer to the build environment and pull from it. This example uses [Fedora](https://www.docker.com/docker-fedora) and Ubunutu. In the buildenv repo, there is a .travis.yml file, a fedora file, and an ubuntu file.
 .travis.yml:
 
     language: c 
@@ -416,4 +416,128 @@ ubuntu:
     WORKDIR /home/user
     RUN pip install --user codecov coverxygen
 
-In the repo, the sonar-project.properties file and the generateDocumentationAndDeploy.sh file will be deleted, and the .travis.yml file, CMakeLists.txt file, and DOXYFILE will be edited. Much of the travis commands are placed instead in the Dockerfile. Therefore, the commands are all in the same place and now can be built from any machine because of Docker.
+In the repo, delete the sonar-project.properties file and the generateDocumentationAndDeploy.sh file. The .travis.yml file, CMakeLists.txt file, and DOXYFILE will be edited. Much of the travis commands are placed instead in the Dockerfile. Therefore, the commands are all in the same place and now can be built from any machine because of Docker. Travis variables/environmental variables are also transferred to Docker. Four environmental variables will need to be set in Travis or else the build will fail because the variables will not exist: DOCKER_USERNAME, DOCKER_PASSWORD, SONARQUBE_GITHUB_TOKEN (github repo token), and SONARQUBE_TOKEN (instructions above under SonarQube on how to generate token in SonarCloud). This example also uses a SSH deploy key, which is automatically put under Travis environmental variables. The other variables below, i.e. ${CC} or ${TRAVIS_JOB_NUMBER}, are autogenerated by Travis.
+The new .travis.yml looks like this:
+
+     language: c
+
+     sudo: required
+     
+     #run docker
+     services:
+       - docker
+       
+     #runs 8 different builds--scripts with the variables COVERAGE, SONARQUBE, etc. will only run when set to ON
+     env:
+       matrix:
+         - DISTRO=ubuntu
+         - DISTRO=ubuntu COVERAGE=ON SONARQUBE=ON
+
+         - DISTRO=fedora DOCKERHUB=ON
+         - DISTRO=fedora COVERAGE=ON
+
+     script:
+       - cp -vr docker ${HOME}/docker
+       - sed -i "1s/fedora/${DISTRO}/" ${HOME}/docker/Dockerfile
+       #navigate to parent directory
+       - cd ../../
+       - mv -v ${TRAVIS_REPO_SLUG} $HOME/docker/git-src
+       - cp -r $HOME/.ccache ${HOME}/docker/ccache
+       - cp -r $HOME/.sonar ${HOME}/docker/sonar
+       # transfer travis variables to docker
+       - docker build --build-arg COVERAGE=${COVERAGE}
+                     --build-arg CC=${CC} --build-arg CXX=${CXX}
+                     --build-arg SONARQUBE_GITHUB_TOKEN=${SONARQUBE_GITHUB_TOKEN}
+                     --build-arg SONARQUBE=${SONARQUBE} --build-arg SONARQUBE_TOKEN=${SONARQUBE_TOKEN}
+                     --build-arg TRAVIS_BRANCH=${TRAVIS_BRANCH} --build-arg TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER}
+                     --build-arg TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST} --build-arg TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
+                     --build-arg TRAVIS_TAG=${TRAVIS_TAG} --build-arg TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG}
+                     --build-arg CI=${CI} --build-arg TRAVIS=${TRAVIS} --build-arg TRAVIS_OS_NAME=${DISTRO}
+                     --build-arg TRAVIS_COMMIT=${TRAVIS_COMMIT}
+                     -t ${TRAVIS_REPO_SLUG}:latest ${HOME}/docker/ &&
+         rm -rf ${HOME}/.ccache &&
+         CON=$(docker run -d ${TRAVIS_REPO_SLUG}:latest /bin/bash) &&
+         docker cp ${CON}:/home/user/.ccache ${HOME}/ &&
+         docker cp ${CON}:/home/user/.sonar ${HOME}/
+
+     after_success:
+       #DOCKER_USERNAME and DOCKER_PASSWORD must be set on travis settings
+       #if they are set, it will log in to docker and push to docker
+       - if [[ ${DOCKERHUB} && ${DOCKER_USERNAME} && ${DOCKER_PASSWORD} && ${TRAVIS_BRANCH} == master && ${TRAVIS_PULL_REQUEST} == false ]]; then
+           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+           if [[ ${CC} == gcc ]]; then docker push "${TRAVIS_REPO_SLUG}:latest"; fi;
+         fi
+       #only runs on builds where COVERAGE=ON and DISTRO=fedora
+       - if [[ ${DISTRO} = fedora && ${COVERAGE} && ${CC} = gcc ]]; then
+           cd $HOME/docker/git-src;
+           #copies encrypted deploy key
+           cp deploy.enc $HOME;
+           #move to gh-pages branch
+           git fetch origin gh-pages && git checkout -b gh-pages FETCH_HEAD;
+           docker cp ${CON}:/home/user/git-src/build/html . ;
+           mv html/* .;
+           rmdir html; 
+           git add --all;
+           #must be using a SSH deploy key--replace value
+           if [[ ${TRAVIS_BRANCH} = master && ${<encrypted_SSH_deploy_key>} && ${<encrypted_SSH_deploy_key>} && ${TRAVIS_PULL_REQUEST} == false ]]; then
+             git config --global user.name "Automatic Deployment (Travis CI)";
+             git config --global user.email "abc@abc.com";
+             git commit -m "Documentation Update";
+             openssl aes-256-cbc -K $<encrypted_SSH_deploy_key> -iv $<encrypted_SSH_deploy_key> -in $HOME/deploy.enc -out ~/.ssh/id_rsa -d;
+             chmod 600 ~/.ssh/id_rsa;
+             #push doxygen documentation
+             git push git@github.com:${TRAVIS_REPO_SLUG} gh-pages:gh-pages;
+           else
+             git status;
+             git diff --cached --no-color | head -n 500;
+           fi;
+         fi
+
+     cache:
+       ccache: true
+       directories:
+         - $HOME/.sonar
+
+     compiler:
+       - gcc
+       - clang
+
+In the DOXYFILE, change the name to DOXYFILE.in and `INPUT = @CMAKE_SOURCE_DIR@`, `GENERATE_LATEX = NO`, and `GENERATE_XML = YES`.
+
+The CMakeLists.txt has a similar initial block and Doxygen block, however, now CMake also does a coverage build 
+
+cmake_minimum_required (VERSION 2.6)
+project (helloworld)
+add_executable(helloworld helloworld.c)
+install(TARGETS helloworld DESTINATION bin)
+
+option(ENABLE_COVERAGE_BUILD "Do a coverage build" ON)
+if(ENABLE_COVERAGE_BUILD)
+  message(STATUS "Enabling coverage build")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage -O0")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -O0")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+endif()
+
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+  configure_file(DOXYFILE.in ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE @ONLY)
+  add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/html/index.html
+    COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/DOXYFILE
+    COMMENT "Build doxygen documentation")
+  add_custom_target(html DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/html/index.html)
+endif()
+
+enable_testing()
+add_test (TestRun helloworld)
+
+option(ENABLE_COVERAGE_BUILD "Do a coverage build" OFF)
+if(ENABLE_COVERAGE_BUILD)
+  message(STATUS "Enabling coverage build")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage -O0")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -O0")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+endif()
