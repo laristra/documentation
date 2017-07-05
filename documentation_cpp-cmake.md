@@ -207,6 +207,7 @@ Then, make a sonar-project.properties file:
 
 ### How to Post Quality Gate Badge on GitHub
 In Markdown, the format for a Quality Gate Badge is `[![Quality Gate](https://sonarqube.com/api/badges/gate?key=<repo_name>%3Amaster)](https://sonarqube.com/dashboard/id=<repo_name>%3Amaster)`. Type it into the README page.
+
 ## Doxygen 
 [Doxygen](http://www.stack.nl/~dimitri/doxygen/) is a tool for generating documentation for code in several different languages, mainly c or c++. The documentation can be displayed on a webpage browser. Download Doxygen to your computer, navigate to a directory, and run `doxygen -g`. This will create a Doxyfile. Then `open Doxyfile` to get the template and standard settings for a Doxyfile. Put this in your GitHub repo as DOXYFILE. Most of the configurations do not need to be changed, but make sure to change the project name to your repo name. Also, make sure `INPUT = ../..` and `GENERATE_HTML = YES`. Next, create a gh-pages branch of the repo by going to the repo settings, and under "GitHub Pages" it should say "Source" -- click on it and switch the branch to master.
 
@@ -347,56 +348,86 @@ Finally, to configure the .travis.yml file correctly, add this to the .travis.ym
 
 The final .travis.yml file for CMake will look like this:
 
-    language: cpp
+
+    language: c
 
     sudo: required
-
-    dist: trusty
-
-    branches:
-      except:
-        - gh-pages
-
+     
+    #run docker
+    services:
+      - docker
+       
+    #runs 8 different builds--scripts with the variables COVERAGE, SONARQUBE, etc. will only run when set to ON
     env:
-      global:
-        - DOXYFILE: $TRAVIS_BUILD_DIR/DOXYFILE
+      matrix:
+        - DISTRO=ubuntu
+        - DISTRO=ubuntu COVERAGE=ON SONARQUBE=ON
 
-    addons:
-      sonarcloud:
-        organization: <username>-github
-      apt:
-        packages:
-          - doxygen
-          - doxygen-doc
-          - doxygen-latex
-          - doxygen-gui
-          - graphviz
-          - cmake-data
-          - cmake
-
-    before_install:
-      - ccache -z
+        - DISTRO=fedora DOCKERHUB=ON
+        - DISTRO=fedora COVERAGE=ON
 
     script:
-      - sonar-scanner
-      - cmake . -DENABLE_COVERAGE_BUILD=ON
-      - make
-      - make test
-      - make html
-
-    compiler:
-      - g++
+      - cp -vr docker ${HOME}/docker
+      - sed -i "1s/fedora/${DISTRO}/" ${HOME}/docker/Dockerfile
+      #navigate to parent directory
+      - cd ../../
+      - mv -v ${TRAVIS_REPO_SLUG} $HOME/docker/git-src
+      - cp -r $HOME/.ccache ${HOME}/docker/ccache
+      - cp -r $HOME/.sonar ${HOME}/docker/sonar
+      # transfer travis variables to docker
+      - docker build --build-arg COVERAGE=${COVERAGE}
+                    --build-arg CC=${CC} --build-arg CXX=${CXX}
+                    --build-arg SONARQUBE_GITHUB_TOKEN=${SONARQUBE_GITHUB_TOKEN}
+                    --build-arg SONARQUBE=${SONARQUBE} --build-arg SONARQUBE_TOKEN=${SONARQUBE_TOKEN}
+                    --build-arg TRAVIS_BRANCH=${TRAVIS_BRANCH} --build-arg TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER}
+                    --build-arg TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST} --build-arg TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
+                    --build-arg TRAVIS_TAG=${TRAVIS_TAG} --build-arg TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG}
+                    --build-arg CI=${CI} --build-arg TRAVIS=${TRAVIS} --build-arg TRAVIS_OS_NAME=${DISTRO}
+                    --build-arg TRAVIS_COMMIT=${TRAVIS_COMMIT}
+                    -t ${TRAVIS_REPO_SLUG}:latest ${HOME}/docker/ &&
+        rm -rf ${HOME}/.ccache &&
+        CON=$(docker run -d ${TRAVIS_REPO_SLUG}:latest /bin/bash) &&
+        docker cp ${CON}:/home/user/.ccache ${HOME}/ &&
+        docker cp ${CON}:/home/user/.sonar ${HOME}/
 
     after_success:
-      - ccache -s
-      - bash <(curl -s https://codecov.io/bash)
-      - openssl aes-256-cbc -K $<encrypted_key> -iv $<encrypted_key> -in deploy.enc -out deploy -d
-      - mv deploy ~/.ssh/id-rsa
-      - chmod 600 ~/.ssh/id-rsa
-      - chmod +x generateDocumentationAndDeploy.sh
-      - if [[ ${TRAVIS_JOB_NUMBER} = *.1 ]]; then ./generateDocumentationAndDeploy.sh; fi
-
+      #DOCKER_USERNAME and DOCKER_PASSWORD must be set on travis settings
+      #if they are set, it will log in to docker and push to docker
+      - if [[ ${DOCKERHUB} && ${DOCKER_USERNAME} && ${DOCKER_PASSWORD} && ${TRAVIS_BRANCH} == master && ${TRAVIS_PULL_REQUEST} == false ]]; then
+          docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+          if [[ ${CC} == gcc ]]; then docker push "${TRAVIS_REPO_SLUG}:latest"; fi;
+        fi
+      #only runs on builds where COVERAGE=ON and DISTRO=fedora
+      - if [[ ${DISTRO} = fedora && ${COVERAGE} && ${CC} = gcc ]]; then
+          cd $HOME/docker/git-src;
+          #copies encrypted deploy key
+          cp deploy.enc $HOME;
+          #move to gh-pages branch
+          git fetch origin gh-pages && git checkout -b gh-pages FETCH_HEAD;
+          docker cp ${CON}:/home/user/git-src/build/html . ;
+          mv html/* .;
+          rmdir html; 
+          git add --all;
+          #must be using a SSH deploy key--replace value
+          if [[ ${TRAVIS_BRANCH} = master && ${<encrypted_SSH_deploy_key>} && ${<encrypted_SSH_deploy_key>} && ${TRAVIS_PULL_REQUEST} == false ]]; then
+            git config --global user.name "Automatic Deployment (Travis CI)";
+            git config --global user.email "abc@abc.com";
+            git commit -m "Documentation Update";
+            openssl aes-256-cbc -K $<encrypted_SSH_deploy_key> -iv $<encrypted_SSH_deploy_key> -in $HOME/deploy.enc -out ~/.ssh/id_rsa -d;
+            chmod 600 ~/.ssh/id_rsa;
+            #push doxygen documentation
+            git push git@github.com:${TRAVIS_REPO_SLUG} gh-pages:gh-pages;
+          else
+            git status;
+            git diff --cached --no-color | head -n 500;
+          fi;
+        fi
+        
     cache:
       ccache: true
       directories:
-    - $HOME/.sonar
+        - $HOME/.sonar
+
+    compiler:
+      - gcc
+      - clang
