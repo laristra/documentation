@@ -1,4 +1,4 @@
- How to
+# How to
 How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen using c with [c repository](https://github.com/laurelmcintyre/c) as example
 
 ## GitHub
