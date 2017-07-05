@@ -1,5 +1,5 @@
 # How to
-How to use GitHub, Travis CI, CodeCov, SonarQube, and Doxygen using c with [c repository](https://github.com/laurelmcintyre/c) as example
+How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, and Make using c with [c-makefile repository](https://github.com/laurelmcintyre/c-makefile) as example
 
 ## GitHub
 [GitHub](github.com/) is a collection of millions of repositories that offers services to facilitate collaboration on and development of a project. GitHub offers version control, which records who made each change to a repository and when. GitHub is the largest host of source code in the world. README files provide a description of a project.
