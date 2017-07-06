@@ -29,7 +29,7 @@ This repo goes through the same initial steps as the cpp-cmake repo. If you want
 [Create personal access token](https://github.com/laurelmcintyre/documentation/blob/gh-pages/gh_personal_access_token.md) OR [Create an SSH deploy key](https://github.com/laurelmcintyre/documentation/blob/gh-pages/deploy_key.md) -- SSH deploy key is more secure
 
 ## Cache
-(Cache description, additions to .travis.yml file)[https://github.com/laurelmcintyre/documentation/blob/gh-pages/cache.md]
+[Cache description, additions to .travis.yml file](https://github.com/laurelmcintyre/documentation/blob/gh-pages/cache.md)
       
 ## Code Coverage
 [CodeCov, .codecov.yml file, and code coverage badge](https://github.com/laurelmcintyre/documentation/blob/gh-pages/codecov.md
