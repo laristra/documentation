@@ -45,7 +45,8 @@ How to use GitHub, Travis CI, CodeCov, SonarQube, Doxygen, and Make using c with
       - ${CC} --coverage <file_name>.o -o <file_name>
       - ./<file_name>
     
-    #if the build passes, it uploads reports to CodeCov
+    #runs if the build passes
+    #if the compiler is clang, it needs llvm-cov instead of gcov
     after_success:
       - if [ ${CC} = clang ]; then
           bash <(curl -s https://codecov.io/bash) -F ${CC} --gcov-exec "llvm-cov gcov";
