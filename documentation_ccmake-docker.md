@@ -32,7 +32,7 @@ This repo goes through the same initial steps as the cpp-cmake repo. If you want
 [Cache description, additions to .travis.yml file](https://github.com/laurelmcintyre/documentation/blob/gh-pages/cache.md)
       
 ## Code Coverage
-[CodeCov, .codecov.yml file, and code coverage badge](https://github.com/laurelmcintyre/documentation/blob/gh-pages/codecov.md
+[CodeCov, .codecov.yml file, and code coverage badge](https://github.com/laurelmcintyre/documentation/blob/gh-pages/codecov.md)
 
 ### Additions to .travis.yml file needed for Code Coverage
     #sudo:required and dist:trusty both specify a trusty build environment
