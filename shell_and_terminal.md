@@ -1,5 +1,7 @@
 ### The Shell and Terminal
-The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the $. 
+The shell is a program used on the command-line interface (on Terminal) to read commands and run other programs. The command line on Terminal starts with the name of the computer followed by the name of the user. Type commands after the prompt ($). 
+
+[Software Carpentry tutorial on the shell](http://swcarpentry.github.io/shell-novice/)
 
 ### Git Commands in Terminal
 `git config -h` show list of GitHub commands  
@@ -12,11 +14,12 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 `git push` push repo to GitHub, final step  
 `git log` shows history of project by commit  
 `git diff` difference between current file and last saved file, can be edited to show difference between two chosen files   
-`git checkout` restore old version of a file or switch branches  
+`git checkout -- <file>` restore old version of a file, also can be used to switch branches  
+`git branch` show current branch  
 `git pull` pull updated files from GitHub to computer  
 
 ### Commands in Terminal
-`mkdir <name>` make directory  
+`mkdir <directory_name>` make directory  
 `cd <directory_name>` navigate into directory  
 `ls` list contents of directory  
 `cat <file_name>` display contents of file in Terminal  
@@ -27,4 +30,4 @@ The shell is a program used on the command-line interface (on Terminal) to read 
 `*.txt` select all files ending with txt (can be any ending)  
 `echo` returns input as output, i.e. returning value of variable  
 `clear` clear Terminal window  
-`$VAR` stores value of variable  
+`$VAR` value of variable  
