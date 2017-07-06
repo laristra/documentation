@@ -1,5 +1,5 @@
 ### Markdown
-Markdown is a language used on GitHub mainly to write README.md files. A file written in markdown on GitHub is indicated by .md. The formatting of Markdown is as follows:
+[Markdown](https://guides.github.com/features/mastering-markdown/) is a language used on GitHub mainly to write README.md files. A file written in markdown on GitHub is indicated by .md. The formatting of Markdown is as follows:
 * _Italic_ words are surrounded by underscores
 * **Bold** words are surrounded by two asterisks on either side
 * Headers come in six sizes and begin with a hashtag #, one hashtag makes the largest size and six hashtags make the smallest size
