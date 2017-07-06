@@ -14,10 +14,11 @@ SSH provides a secure channel in an unsecure network using encryption. On GitHub
    * For example, to put the repository in Desktop, type `cd Desktop` on the command line
  * Type in `git clone` and then the SSH version of the link, which can be found under "clone or download" on the repository page
  * Type `cd <username>.github.io` which will navigate into the local GitHub repository on the computer
- * Type:
-`git add --all`
-`git commit -m "initial commit"`
-`git push -u origin master` -- Adding updated files from a computer to GitHub requires these three steps every time.
+ * Type:  
+`git add --all`  
+`git commit -m "initial commit"`  
+`git push -u origin master`  
+ Adding updated files from a computer to GitHub requires these three steps every time.
 
 ### Clone a GitHub Repo to your computer
 [Github's instructions](https://help.github.com/articles/cloning-a-repository/) are fairly straightforward -- first click "Clone or Download" on the main page of a repo and copy the SSH key version. Then go to Terminal and type `git clone <SSH_key>`, which will clone the contents of the git repo to your computer. To navigate into this repo, type `cd <repo_name>`.
