@@ -151,7 +151,7 @@ Caches store data to speed up processes, for example, requests are temporarily s
       - ${CC} --coverage <file_name>.o -o <file_name>
       - ./<file_name>
     
-    #if the compiler is clang and the build passes, then it uploads reports to CodeCov
+    #if the build passes, it uploads reports to CodeCov
     after_success:
       - if [ ${CC} = clang ]; then
           bash <(curl -s https://codecov.io/bash) -F ${CC} --gcov-exec "llvm-cov gcov";
