@@ -3,14 +3,11 @@
 
 CMakeLists.txt file: 
 
-    #defines the project, executable, and target
+    #tells cmake to make a program
     cmake_minimum_required (VERSION 2.6)
-    project (<repo_name>)
-    add_executable(<repo_name> <file_name>.cpp)
-
-    set_property(TARGET <repo_name> PROPERTY CXX_STANDARD 11)
-    set_property(TARGET <repo_name> PROPERTY CXX_STANDARD_REQUIRED ON)
-      
+    project (<program_name>)
+    add_executable(<rprogram_name> <file_name>.cpp)
+    
     #add Doxygen commands to the CMakeLists.txt file instead of the .travis.yml file
     find_package(Doxygen)
     if (DOXYGEN_FOUND)
@@ -29,7 +26,8 @@ CMakeLists.txt file:
       set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
       set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
     endif()
-
+    
+    #define a test
     enable_testing()
     add_test (TestRun cpp-cmake)
     
