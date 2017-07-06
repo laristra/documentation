@@ -91,7 +91,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
 A [badge]([![Build Status](https://travis-ci.org/laurelmcintyre/c-makefile.svg?branch=master)](https://travis-ci.org/laurelmcintyre/c-makefile)) displays the status of your build from Travis CI onto your GitHub page. To display the badge on a README page, go to Travis. By the account name should be the build passing badge. Click on it and a window will pop up. Change the setting to Markdown and copy and paste the link it generates into the README page.
 
 ## Create a Personal Access Token
-A personal access token allows for remote access to a repo. A more secure alternative is a SSH Deploy Key (below), but this example uses a personal access token. To create a personal access token, go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
+A personal access token allows for remote access to a repo. A more secure alternative is a SSH Deploy Key (below), but this example uses a personal access token. Go to GitHub settings, generate a personal access token, and click public_repo. Copy it under Travis environmental variables and call it GH_REPO_TOKEN.
 
 ## OR Create a Deploy Key for the Repo
 In place of a personal access token which can be used to access all of an organization's repos, a deploy key (SSH key) is specific to one repo and therefore is safer. To create a deploy key, go to Terminal. 
