@@ -78,7 +78,7 @@ Continuous integration is the frequent compilation of all separate copies of a p
 [Travis CI](http://travis-ci.org/) can run on GitHub — log in to Travis CI through your GitHub account and enable Travis CI builds. Each addition to code is tested by Travis CI and either passes or fails as indicated on the build status page. To run Travis CI on a GitHub repository, add a .travis.yml file to the repository. This file details the language of the project, what dependencies to install, what to use to do a build, and what to test against. The .travis.yml file is written in YAML format. Once the .travis.yml file is configured correctly on GitHub and the tab for the repo is switched to on in Travis settings, Travis will run builds after every commit to the GitHub repo.
 
 ### Example of a .travis.yml file
-[Link to example c repository](https://github.com/laurelmcintyre/c)
+[Link to example c-makefile repository](https://github.com/laurelmcintyre/c-makefile)
 * `language: c` means that the project is written in c.
 * `script: ${CC} <file-name>.c -o <file-name>` runs the compiler gcc or clang on a file
 *  Specify the compiler which the script runs on
