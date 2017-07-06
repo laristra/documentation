@@ -110,6 +110,7 @@ First, you must create a build environment, which can be in a separate repo such
     fi
 
 fedora:
+
     #pulls from the latest image of fedora
     FROM fedora:latest
     RUN dnf install -y make cmake git gcc-c++ gcc-gfortran flex patch doxygen graphviz pandoc python2 openmpi-devel exodusii-devel cereal-devel lapack-devel scotch-devel metis-devel environment-modules python-pip clang llvm compiler-rt ccache texlive-epstopdf-bin ghostscript-core texlive-latex-bin-bin texlive-collection-fontsrecommended texlive-fancyhdr findutils texlive-booktabs gdb wget curl lcov
