@@ -82,7 +82,8 @@ You will need to add these lines to your .travis.yml file:
 ## Docker
 Docker is a software container platform packages the libraries and settings of a piece of software and makes it perform the same regardless of the device it is on. Docker can be in Travis to test other Linux distributions or deploy a build on Docker Hub. To use Docker, make an account and enter a username, email, and password. Go to DockerHub settings under "linked accounts and services" and link GitHub. 
 
-First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo. The Dockerfile will refer to the build environment and pull from it. This example uses [Fedora](https://www.docker.com/docker-fedora) and Ubunutu. In the buildenv repo, there is a .travis.yml file, a fedora file, and an ubuntu file.
+First, you must create a build environment, which can be in a separate repo such as [buildenv](https://github.com/laurelmcintyre/buildenv) or on a separate branch of the same repo. The Dockerfile will refer to the build environment and pull from it. This example uses [Fedora](https://www.docker.com/docker-fedora) and Ubuntu. In the buildenv repo, there is a .travis.yml file, a fedora file, and an ubuntu file.
+
 .travis.yml:
 
     language: c 
