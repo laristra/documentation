@@ -7,5 +7,5 @@
   * Indented items in a list have two spaces before the asterisk
 * Paragraphs need two spaces afterwards for a soft break or a return afterwards for a hard break
 * Links are made of two parts, a description written in [] and the link contained in () `[GitHub](https://github.com/)`
-* Images are formatted the same as links with a ! in front of the first brackets 
+* Images are formatted the same as links with a ! in front of the first brackets ![Github](https://github.com/)
 * The tick above the tab key `creates a monospace`
