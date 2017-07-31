@@ -15,7 +15,7 @@ SSH provides a secure channel in an unsecure network using encryption. On GitHub
  * Type in `git clone` and then the SSH version of the link, which can be found under "clone or download" on the repository page
  * Type `cd <username>.github.io` which will navigate into the local GitHub repository on the computer
  * Type:  
-`git add --all`  
+`git add <name>`  
 `git commit -m "initial commit"`  
 `git push -u origin master`  
  Adding updated files from a computer to GitHub requires these three steps every time.
