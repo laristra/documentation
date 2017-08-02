@@ -1,5 +1,5 @@
 ### How to Resolve a Merge Conflict
-One of the reasons for continuous integration is to avoid merge conflict. However, if two people edit copies of a file and attempt to merge them into the main branch, they will have to fix the conflicts. For example, part of the mytan.py file was originally like this:
+One of the reasons for continuous integration is to avoid merge conflict. However, if two people edit copies of a file and attempt to merge them into the main branch, they will have to fix the conflicts (Git is a good tool for merging). For example, part of the mytan.py file was originally like this:
 
     if __name__ == "__main__":
 
