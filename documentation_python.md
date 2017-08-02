@@ -61,7 +61,7 @@ You will need to add these lines to your .travis.yml file:
       - sonar-scanner
 
 ### Pip
-Pip can be used to install software packages written in Python. You can use pip in Terminal to install, upgrade, or uninstall packages using the following syntax:
+Pip can be used to install software packages written in Python. You can use pip in Terminal to install, upgrade, or uninstall packages using the following syntax (or with `pip install --user <package>`:
 `pip install <package>`
 `pip install -- upgrade <package>`
 `pip uninstall <package>`
